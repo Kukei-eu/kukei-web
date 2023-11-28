@@ -1,0 +1,11 @@
+{
+  "name": "kukei-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Kukei-eu/kukei-web.git",
+  "author": "Szymon Nowicki <sznowicki@eskalacja.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.17.1"
+  }
+}
