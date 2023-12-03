@@ -8,4 +8,4 @@ node_modules
 .dev.vars
 .xata
 .yarn
-.yarnrc.yml
+.yarnrc.yaml
