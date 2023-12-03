@@ -5,7 +5,6 @@
   "repository": "git@github.com:Kukei-eu/kukei-web.git",
   "author": "Szymon Nowicki <sznowicki@eskalacja.com>",
   "license": "UNLICENSED",
-  "private": "true",
   "scripts": {
     "dev": "wrangler pages dev dist",
     "build": "node scripts/build.js"
@@ -16,5 +15,6 @@
   "dependencies": {
     "@xata.io/client": "^0.28.0",
     "mustache": "^4.2.0"
-  }
+  },
+  "packageManager": "yarn@4.0.2"
 }
