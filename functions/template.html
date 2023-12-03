@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }} </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<main>
+	<form action="">
+		<input type="text" name="q" value="{{ q }}"/>
+	</form>
+	{{#hasResults}}
+		<p>Search results generated in {{ doneIn }}ms</p>
+		<ul>
+			{{#list}}
+			<li>
+				<h2>{{ title }}</h2>
+				<p>{{ excerpt }}</p>
+				<a href="{{ url }}">{{ url }}</a>
+			</li>
+			{{/list}}
+		</ul>
+	{{/hasResults}}
+	{{^hasResults}}
+		<p>No results found</p>
+	{{/hasResults}}
+</main>
+</body>
+</html>

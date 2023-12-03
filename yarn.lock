@@ -176,6 +176,11 @@
   dependencies:
     undici-types "~5.26.4"
 
+"@xata.io/client@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@xata.io/client/-/client-0.28.0.tgz#7e617df3adef2f4c0c1fcf2ad6e2736fd506a5c4"
+  integrity sha512-V6rpx+9C6uYdGUDUvk5xIot19zRvDEQhkHXWGIkKY/SCKu4w68S81Z88tgGLRaknSFjpAm7H/rvGBR2DrDpqtQ==
+
 acorn-walk@^8.2.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.3.0.tgz#2097665af50fd0cf7a2dfccd2b9368964e66540f"
