@@ -10,6 +10,7 @@
 <main>
 	<div class="headline">
 		<h1>Kukey.eu <span>curated search for web developers</span></h1>
+		<p>Super MVP, contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
 	</div>
 	<form action="">
 		<input type="text" name="q" value="{{ q }}"/>
@@ -21,7 +22,7 @@
 			<li>
 				<h2>{{ title }}</h2>
 				<p>{{ excerpt }}</p>
-				<blockquote>{{{ highlight }}}</blockquote>
+				<blockquote>{{ highlight }}</blockquote>
 				<a href="{{ url }}">{{ url }}</a>
 			</li>
 			{{/list}}
