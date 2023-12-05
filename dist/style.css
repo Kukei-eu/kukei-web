@@ -1,0 +1,40 @@
+:root {
+	--font-family-head: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
+	--font-family-base: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+
+	--color-background: oklch(0.91 0.03 265.35);
+}
+
+html, body {
+	font-family: var(--font-family-base);
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: var(--font-family-head);
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 2rem;
+	display: grid;
+	justify-content: center;
+	text-align: center;
+	& span {
+		font-size: 1.5rem;
+	}
+}
+
+main {
+	background: var(--color-background);
+	display: grid;
+	gap: 2rem;
+	padding: 2rem 1rem;
+}
+.headline {
+
+}
