@@ -1,20 +1,4 @@
 {
-  "name": "@sznowicki/kukei-web",
-  "version": "1.0.0",
-  "type": "module",
-  "repository": "git@github.com:Kukei-eu/kukei-web.git",
-  "author": "Szymon Nowicki <sznowicki@eskalacja.com>",
-  "license": "UNLICENSED",
-  "scripts": {
-    "dev": "wrangler pages dev dist",
-    "build": "node scripts/build.js"
-  },
-  "devDependencies": {
-    "wrangler": "^3.17.1"
-  },
-  "dependencies": {
-    "@xata.io/client": "^0.28.0",
-    "mustache": "^4.2.0"
-  },
+  "name": "kukei-web",
   "packageManager": "yarn@4.0.2"
 }
