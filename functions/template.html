@@ -17,16 +17,32 @@
 	</form>
 	{{#hasResults}}
 		<p>Search results generated in {{ doneIn }}ms</p>
-		<ul>
-			{{#list}}
-			<li>
-				<h2>{{ title }}</h2>
-				<p>{{ excerpt }}</p>
-				<blockquote>{{ highlight }}</blockquote>
-				<a href="{{ url }}">{{ url }}</a>
-			</li>
-			{{/list}}
-		</ul>
+		<section>
+			<h2>Blogs</h2>
+			<ul>
+				{{#blogs}}
+				<li>
+					<h2>{{ title }}</h2>
+					<p>{{ excerpt }}</p>
+					<blockquote>{{ highlight }}</blockquote>
+					<a href="{{ url }}">{{ url }}</a>
+				</li>
+				{{/blogs}}
+			</ul>
+		</section>
+		<section>
+			<h2>Docs</h2>
+			<ul>
+				{{#docs}}
+				<li>
+					<h2>{{ title }}</h2>
+					<p>{{ excerpt }}</p>
+					<blockquote>{{ highlight }}</blockquote>
+					<a href="{{ url }}">{{ url }}</a>
+				</li>
+				{{/docs}}
+			</ul>
+		</section>
 	{{/hasResults}}
 	{{#noResults}}
 		<p>No results found</p>
