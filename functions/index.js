@@ -2,7 +2,7 @@ import Mustache from "mustache";
 import template from "./template.html";
 import { search } from '../lib/search.js';
 
-export default async (context) => {
+export const onRequestGet = async (context) => {
 	const { request, env } = context;
 	const { searchParams } = new URL(request.url);
 	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
