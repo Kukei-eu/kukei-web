@@ -13,10 +13,24 @@ html, body {
 	margin: 0;
 }
 
+input {
+	font-family: var(--font-family-base);
+	padding: .75rem 0.5rem;
+	width: 100%;
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: var(--font-family-head);
 	margin: 0;
 	padding: 0;
+}
+
+ul {
+	margin: 1rem 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 2rem;
 }
 
 h1 {

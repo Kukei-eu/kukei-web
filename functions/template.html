@@ -13,7 +13,7 @@
 		<p>Super MVP, contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
 	</div>
 	<form action="">
-		<input type="text" name="q" value="{{ q }}"/>
+		<input type="search" name="q" value="{{ q }}"/>
 	</form>
 	{{#hasResults}}
 		<p>Search results generated in {{ doneIn }}ms</p>
@@ -22,7 +22,7 @@
 			<ul>
 				{{#blogs}}
 				<li>
-					<h2>{{ title }}</h2>
+					<h3>{{ title }}</h3>
 					<p>{{ excerpt }}</p>
 					<blockquote>{{ highlight }}</blockquote>
 					<a href="{{ url }}">{{ url }}</a>
@@ -35,7 +35,7 @@
 			<ul>
 				{{#docs}}
 				<li>
-					<h2>{{ title }}</h2>
+					<h3>{{ title }}</h3>
 					<p>{{ excerpt }}</p>
 					<blockquote>{{ highlight }}</blockquote>
 					<a href="{{ url }}">{{ url }}</a>
