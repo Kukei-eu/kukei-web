@@ -14,7 +14,6 @@
     "wrangler": "^3.17.1"
   },
   "dependencies": {
-    "@xata.io/client": "^0.28.0",
     "meilisearch": "^0.36.0",
     "mustache": "^4.2.0"
   },

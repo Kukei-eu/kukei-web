@@ -278,7 +278,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@sznowicki/kukei-web@workspace:."
   dependencies:
-    "@xata.io/client": "npm:^0.28.0"
     meilisearch: "npm:^0.36.0"
     mustache: "npm:^4.2.0"
     wrangler: "npm:^3.17.1"
@@ -300,15 +299,6 @@ __metadata:
   dependencies:
     undici-types: "npm:~5.26.4"
   checksum: 7c8a0327a29d68a0bb152ae30e8c4738638515dd599064821c9d0c1884a1efa103021cd8f8c91e690cd56b0602bb6fe0e6651a5df2337bdc85e0c0f66054b2ce
-  languageName: node
-  linkType: hard
-
-"@xata.io/client@npm:^0.28.0":
-  version: 0.28.0
-  resolution: "@xata.io/client@npm:0.28.0"
-  peerDependencies:
-    typescript: ">=4.5"
-  checksum: bbcde22004aac775e683b12e20cbdcf791482dbd074d929d917016a1cc9f02a60a07cc3eee5b0d536453828d76a29bed15f6ae776d6f8c20e3c2071089e20e15
   languageName: node
   linkType: hard
 
