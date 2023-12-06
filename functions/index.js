@@ -9,7 +9,7 @@ export const onRequestGet = async (context) => {
 	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
 
 	const startTime = Date.now();
-	const [blogs, docs] = q ? await search(env, q, p) : [];
+	const [blogs, docs] = q ? await search(env, q, p) : [[], []];
 	const doneIn = Date.now() - startTime;
 	const hasResults = blogs.length > 0 || docs.length > 0;
 
