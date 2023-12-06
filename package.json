@@ -14,7 +14,7 @@
   "devDependencies": {
     "eslint": "^8.55.0",
     "eslint-config-minimal-tabs": "^1.0.0",
-    "wrangler": "^3.17.1"
+    "wrangler": "^3.19.0"
   },
   "dependencies": {
     "meilisearch": "^0.36.0",

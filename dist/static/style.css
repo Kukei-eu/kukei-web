@@ -2,7 +2,9 @@
 	--font-family-head: Superclarendon, 'Bookman Old Style', 'URW Bookman', 'URW Bookman L', 'Georgia Pro', Georgia, serif;
 	--font-family-base: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 
-	--color-background: oklch(0.91 0.03 265.35);
+	--color-background: oklch(1 0 0);
+	--color-base: oklch(0 0 0);
+	--border-size: 4px;
 }
 
 html, body {
@@ -13,15 +15,24 @@ html, body {
 	margin: 0;
 }
 
-input {
+input[type="search"] {
 	font-family: var(--font-family-base);
 	padding: .75rem 0.5rem;
 	width: 100%;
+	font-size: 1.25rem;
+	border: 0;
+	box-shadow: 0 2px 0 0px var(--color-base);
+
+	&:focus,
+	&:active {
+		box-shadow: 0 2px 0 0px var(--color-base),  0 0 0 2px var(--color-base);
+		outline: none;
+	}
 }
 
 h1, h2, h3, h4, h5 {
 	font-family: var(--font-family-head);
-	margin: 0;
+	margin: 2em 0 1em;
 	padding: 0;
 }
 
@@ -43,6 +54,8 @@ h1 {
 main {
 	background: var(--color-background);
 	padding: 2rem 1rem;
+	max-width: 120ch;
+	width: 100%;
 }
 
 blockquote {
