@@ -8,9 +8,12 @@
   "scripts": {
     "dev": "wrangler pages dev dist",
     "make:hash": "node ./scripts/make-hash.js",
-    "build": "yarn make:hash && yarn workspaces focus --production"
+    "build": "yarn make:hash && yarn workspaces focus --production",
+    "lint": "eslint ."
   },
   "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-minimal-tabs": "^1.0.0",
     "wrangler": "^3.17.1"
   },
   "dependencies": {

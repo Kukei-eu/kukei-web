@@ -1,5 +1,5 @@
-import Mustache from "mustache";
-import template from "./template.html";
+import Mustache from 'mustache';
+import template from './template.html';
 import { search } from '../lib/search.js';
 import hash from './version.js';
 
@@ -30,4 +30,4 @@ export const onRequestGet = async (context) => {
 			'content-type': 'text/html',
 		},
 	});
-}
+};
