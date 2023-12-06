@@ -1,6 +1,6 @@
 import Mustache from 'mustache';
 import template from './template.html';
-import { search } from '../lib/search.js';
+import { search, stats } from '../lib/search.js';
 import hash from './version.js';
 
 export const onRequestGet = async (context) => {
@@ -9,7 +9,14 @@ export const onRequestGet = async (context) => {
 	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
 
 	const startTime = Date.now();
-	const [blogs, docs] = q ? await search(env, q, p) : [[], []];
+	const [
+		blogs,
+		docs
+	] = q ? await search(env, q, p) : [[], []];
+	const [
+		blogPages,
+		docsPages,
+	] = await stats(env);
 	const doneIn = Date.now() - startTime;
 	const hasResults = blogs.length > 0 || docs.length > 0;
 
@@ -22,6 +29,8 @@ export const onRequestGet = async (context) => {
 		noResults: q && !hasResults,
 		doneIn,
 		hash,
+		blogPages,
+		docsPages,
 	};
 
 	const html = Mustache.render(template, view);
