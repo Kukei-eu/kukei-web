@@ -14,40 +14,54 @@
 		<p>So far indexed {{ blogPages }} pages of blogs and {{ docsPages }} pages of docs.</p>
 	</div>
 	<form action="">
-		<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="Type your query" />
+		<div class="form-main">
+			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="Type your query" autofocus />
+			<button type="submit">Search</button>
+		</div>
 	</form>
-	{{#hasResults}}
+	{{#hasQuery}}
+		<h2>Results</h2>
 		<p>Search results generated in {{ doneIn }}ms</p>
-		<section>
-			<h2>Blogs</h2>
-			<ul>
-				{{#blogs}}
-				<li>
-					<h3>{{ title }}</h3>
-					<p>{{ excerpt }}</p>
-					<blockquote>{{ highlight }}</blockquote>
-					<a href="{{ url }}">{{ url }}</a>
-				</li>
-				{{/blogs}}
-			</ul>
-		</section>
-		<section>
-			<h2>Docs</h2>
-			<ul>
-				{{#docs}}
-				<li>
-					<h3>{{ title }}</h3>
-					<p>{{ excerpt }}</p>
-					<blockquote>{{ highlight }}</blockquote>
-					<a href="{{ url }}">{{ url }}</a>
-				</li>
-				{{/docs}}
-			</ul>
-		</section>
-	{{/hasResults}}
-	{{#noResults}}
-		<p>No results found</p>
-	{{/noResults}}
+		{{#hasResults}}
+			{{#results}}
+				<section>
+					<h3>{{ name }}</h3>
+					<ul>
+						{{#hits}}
+						<li class="result-item-first-level">
+							<div class="result-item-first-level__data">
+								<h4>{{ title }}</h4>
+								<p>{{ excerpt }}</p>
+<!--								<blockquote>{{ highlight }}</blockquote>-->
+								<a href="{{ url }}">{{ url }}</a>
+							</div>
+							{{#subItems.length}}
+							<label>
+								<input type="checkbox" class="result-item-first-level__checkbox" />
+								Show more from {{hostname}} ({{ subItems.length }})
+							</label>
+							<ul class="result-item-first-level__sublist">
+								{{#subItems}}
+								<li class="result-item-second-level">
+									<h4>{{ title }}</h4>
+									<p>{{ excerpt }}</p>
+									<blockquote>{{ highlight }}</blockquote>
+									<a href="{{ url }}">{{ url }}</a>
+								</li>
+								{{/subItems}}
+							</ul>
+							{{/subItems.length}}
+						</li>
+						{{/hits}}
+					</ul>
+				</section>
+			{{/results}}
+		{{/hasResults}}
+		{{#noResults}}
+			<p>No results found</p>
+		{{/noResults}}
+	{{/hasQuery}}
+
 </main>
 </body>
 </html>

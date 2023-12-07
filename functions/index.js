@@ -15,26 +15,28 @@ export const onRequestGet = async (context) => {
 		docsPages,
 	] = await stats(env);
 	const doneIn = Date.now() - startTime;
-	const hasResults = result?.hits?.length > 0;
-
-	const hits = {};
-
-	result?.hits?.forEach((hit) => {
-		if (!hits[hit.index]) {
-			hits[hit.index] = {
-				label: hit.index === 'blogs' ? 'Blogs' : 'Docs',
-				items: [],
-			};
-		}
-
-	});
-
+	const hasBlogs = result?.hits.blogs.length > 0;
+	const hasDocs = result?.hits.docs.length > 0;
+	const results = [];
+	if (result.hits.blogs.length) {
+		results.push({
+			name: 'Blogs',
+			hits: result.hits.blogs,
+		});
+	}
+	if (result.hits.docs.length) {
+		results.push({
+			name: 'Docs',
+			hits: result.hits.docs,
+		});
+	}
 	const view = {
 		q,
 		title: 'kukei.eu',
-		hits,
-		hasResults,
-		noResults: q && !hasResults,
+		results,
+		hasQuery: !!q,
+		noResults: !(hasBlogs || hasDocs),
+		hasResults: results.length > 0,
 		doneIn,
 		hash,
 		blogPages,
