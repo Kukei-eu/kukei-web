@@ -9,22 +9,30 @@ export const onRequestGet = async (context) => {
 	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
 
 	const startTime = Date.now();
-	const [
-		blogs,
-		docs
-	] = q ? await search(env, q, p) : [[], []];
+	const result = q ? await search(env, q, p) : null;
 	const [
 		blogPages,
 		docsPages,
 	] = await stats(env);
 	const doneIn = Date.now() - startTime;
-	const hasResults = blogs.length > 0 || docs.length > 0;
+	const hasResults = result?.hits?.length > 0;
+
+	const hits = {};
+
+	result?.hits?.forEach((hit) => {
+		if (!hits[hit.index]) {
+			hits[hit.index] = {
+				label: hit.index === 'blogs' ? 'Blogs' : 'Docs',
+				items: [],
+			};
+		}
+
+	});
 
 	const view = {
 		q,
 		title: 'kukei.eu',
-		blogs,
-		docs,
+		hits,
 		hasResults,
 		noResults: q && !hasResults,
 		doneIn,
