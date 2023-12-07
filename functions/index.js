@@ -18,13 +18,13 @@ export const onRequestGet = async (context) => {
 	const hasBlogs = result?.hits.blogs.length > 0;
 	const hasDocs = result?.hits.docs.length > 0;
 	const results = [];
-	if (result.hits.blogs.length) {
+	if (hasBlogs) {
 		results.push({
 			name: 'Blogs',
 			hits: result.hits.blogs,
 		});
 	}
-	if (result.hits.docs.length) {
+	if (hasDocs) {
 		results.push({
 			name: 'Docs',
 			hits: result.hits.docs,
