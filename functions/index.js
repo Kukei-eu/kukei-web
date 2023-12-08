@@ -2,6 +2,7 @@ import Mustache from 'mustache';
 import template from './template.html';
 import { search, stats } from '../lib/search.js';
 import hash from './version.js';
+import classNames from 'html-classnames'
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
@@ -30,11 +31,18 @@ export const onRequestGet = async (context) => {
 			hits: result.hits.docs,
 		});
 	}
+
+	const hasQuery = !!q;
+	const mainClass = classNames('body', {
+		'--has-query': hasQuery,
+	});
+
 	const view = {
 		q,
 		title: 'kukei.eu',
 		results,
-		hasQuery: !!q,
+		hasQuery,
+		mainClass,
 		noResults: !(hasBlogs || hasDocs),
 		hasResults: results.length > 0,
 		doneIn,

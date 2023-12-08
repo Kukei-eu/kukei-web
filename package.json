@@ -17,6 +17,7 @@
     "wrangler": "^3.19.0"
   },
   "dependencies": {
+    "html-classnames": "^1.0.0",
     "meilisearch": "^0.36.0",
     "mustache": "^4.2.0"
   },

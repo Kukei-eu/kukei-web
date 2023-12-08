@@ -4,64 +4,73 @@
 	<meta charset="UTF-8">
 	<title>{{ title }} </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/static/style.css?v={{ hash }}" />
+	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
+	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
+	<link rel="stylesheet" href="/static/search.css?v={{ hash }}" />
 </head>
-<body>
+<body class="{{ mainClass }}">
 <main>
-	<div class="headline">
-		<h1>Kukey.eu <br > <span>curated search for web developers</span></h1>
-		<p>Super MVP, contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
-		<p>So far indexed {{ blogPages }} pages of blogs and {{ docsPages }} pages of docs. See all sources <a href="https://github.com/Kukei-eu/spider/blob/main/index-sources.json">on GitHub</a>. Edits welcomed!</p>
-	</div>
 	<form action="">
+		<div class="headline">
+			<h1>
+				<a href="/">Kukey.eu</a>
+				<br >
+				<span> curated search for web developers</span></h1>
+		</div>
 		<div class="form-main">
 			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="Type your query" autofocus />
 			<button type="submit">Search</button>
 		</div>
-	</form>
 	{{#hasQuery}}
-		<h2>Results</h2>
-		<p>Search results generated in {{ doneIn }}ms</p>
-		{{#hasResults}}
+		<div class="results">
+			<h2>Results <span>generated in {{ doneIn }}ms</span></h2>
+			{{#hasResults}}
 			{{#results}}
-				<section>
-					<h3>{{ name }}</h3>
-					<ul>
-						{{#hits}}
-						<li class="result-item-first-level">
-							<div class="result-item-first-level__data">
+			<section>
+				<h3>{{ name }}</h3>
+				<ul>
+					{{#hits}}
+					<li class="result-item-first-level">
+						<div class="result-item-first-level__data">
+							<h4>{{ title }}</h4>
+							<p>{{ excerpt }}</p>
+							<!--								<blockquote>{{ highlight }}</blockquote>-->
+							<a href="{{ url }}">{{ url }}</a>
+						</div>
+						{{#subItems.length}}
+						<label>
+							<input type="checkbox" class="result-item-first-level__checkbox" />
+							Show more from {{hostname}} ({{ subItems.length }})
+						</label>
+						<ul class="result-item-first-level__sublist">
+							{{#subItems}}
+							<li class="result-item-second-level">
 								<h4>{{ title }}</h4>
 								<p>{{ excerpt }}</p>
-<!--								<blockquote>{{ highlight }}</blockquote>-->
+								<blockquote>{{ highlight }}</blockquote>
 								<a href="{{ url }}">{{ url }}</a>
-							</div>
-							{{#subItems.length}}
-							<label>
-								<input type="checkbox" class="result-item-first-level__checkbox" />
-								Show more from {{hostname}} ({{ subItems.length }})
-							</label>
-							<ul class="result-item-first-level__sublist">
-								{{#subItems}}
-								<li class="result-item-second-level">
-									<h4>{{ title }}</h4>
-									<p>{{ excerpt }}</p>
-									<blockquote>{{ highlight }}</blockquote>
-									<a href="{{ url }}">{{ url }}</a>
-								</li>
-								{{/subItems}}
-							</ul>
-							{{/subItems.length}}
-						</li>
-						{{/hits}}
-					</ul>
-				</section>
+							</li>
+							{{/subItems}}
+						</ul>
+						{{/subItems.length}}
+					</li>
+					{{/hits}}
+				</ul>
+			</section>
 			{{/results}}
-		{{/hasResults}}
-		{{#noResults}}
+			{{/hasResults}}
+			{{#noResults}}
 			<p>No results found</p>
-		{{/noResults}}
+			{{/noResults}}
+		</div>
 	{{/hasQuery}}
-
+	</form>
 </main>
+<footer>
+	<h2 class="visually-hidden">About</h2>
+	<p class="about__brand">Kukey.eu - curated search for web developers</p>
+	<p>Super MVP, contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
+	<p>So far indexed {{ blogPages }} pages of blogs and {{ docsPages }} pages of docs. See all sources <a href="https://github.com/Kukei-eu/spider/blob/main/index-sources.json">on GitHub</a>. Edits welcomed!</p>
+</footer>
 </body>
 </html>
