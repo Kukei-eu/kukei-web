@@ -20,6 +20,5 @@
     "html-classnames": "^1.0.0",
     "meilisearch": "^0.36.0",
     "mustache": "^4.2.0"
-  },
-  "packageManager": "yarn@4.0.2"
+  }
 }
