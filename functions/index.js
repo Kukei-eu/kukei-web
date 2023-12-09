@@ -14,21 +14,29 @@ export const onRequestGet = async (context) => {
 	const [
 		blogPages,
 		docsPages,
+		magazinesPages,
 	] = await stats(env);
 	const doneIn = Date.now() - startTime;
 	const hasBlogs = result?.hits.blogs.length > 0;
 	const hasDocs = result?.hits.docs.length > 0;
+	const hasMagazines = result?.hits.magazines.length > 0;
 	const results = [];
+	if (hasDocs) {
+		results.push({
+			name: 'Docs',
+			hits: result.hits.docs,
+		});
+	}
 	if (hasBlogs) {
 		results.push({
 			name: 'Blogs',
 			hits: result.hits.blogs,
 		});
 	}
-	if (hasDocs) {
+	if (hasMagazines) {
 		results.push({
-			name: 'Docs',
-			hits: result.hits.docs,
+			name: 'Magazines',
+			hits: result.hits.magazines,
 		});
 	}
 
@@ -49,6 +57,8 @@ export const onRequestGet = async (context) => {
 		hash,
 		blogPages,
 		docsPages,
+		magazinesPages,
+		totalPages: blogPages + docsPages + magazinesPages,
 	};
 
 	const html = Mustache.render(template, view);
