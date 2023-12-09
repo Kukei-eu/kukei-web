@@ -3,6 +3,8 @@
 }
 
 html {
+	background: var(--color-background);
+	color: var(--color-base);
 	font-family: var(--font-family-base);
 	width: 100%;
 	height: 100%;
@@ -22,13 +24,18 @@ h1, h2 {
 
 h1 {
 	& a {
-		color: inherit;
+		color: var(--color-base);
 		text-decoration: none;
+
+		&:visited {
+			color: inherit;
+		}
 
 		&:hover,
 		&:focus,
 		&:active {
 			text-decoration: underline;
+			color: var(--color-base);
 		}
 	}
 }
@@ -146,9 +153,6 @@ body.body--has-query {
 			grid-area: results;
 		}
 	}
-
-
-
 }
 
 input[type="search"] {
@@ -158,6 +162,8 @@ input[type="search"] {
 	font-size: 1.25rem;
 	border: 0;
 	box-shadow: 0 2px 0 0px var(--color-base);
+	background: var(--color-background);
+	color: var(--color-base);
 
 	&:focus,
 	&:active {
