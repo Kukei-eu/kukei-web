@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "wrangler pages dev dist",
     "make:hash": "node ./scripts/make-hash.js",
-    "build": "yarn make:hash && yarn workspaces focus --production",
+    "build": "yarn make:hash && yarn install --production",
     "lint": "eslint ."
   },
   "devDependencies": {
