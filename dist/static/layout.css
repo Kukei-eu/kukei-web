@@ -217,3 +217,22 @@ blockquote {
 		}
 	}
 }
+
+ul.list {
+	display: block;
+	margin-left: 2rem;
+
+	& li {
+		display: list-item;
+		list-style: circle;
+	}
+}
+
+body.about {
+	display: block;
+	& > main {
+		box-shadow: 4lh 2px 0 1px var(--color-background), -2px 2px 0 1px;
+		display: block;
+		text-align: left;
+	}
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }} </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
+	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
+	<script type="module" src="/static/modules.js?v={{ hash }}"></script>
+</head>
+<body class="about">
+<main>
+	<h1><a href="/">Kukei.eu</a></h1>
+	<h2>What is it</h2>
+	<p>Welcome to a curated search engine aimed at web developers.</p>
+	<p>It's an early version, still very much in progress with <a href="https://github.com/Kukei-eu/spider/blob/main/index-sources.json">growing index of</a></p>
+	<ul class="list">
+		<li><format-number>{{blogPages}}</format-number> blogs pages</li>
+		<li><format-number>{{docsPages}}</format-number> docs pages</li>
+		<li><format-number>{{magazinesPages}}</format-number> magazines pages</li>
+	</ul>
+	<p>It's created and maintained by <a href="https://social.nowicki.io/@hey">Szymon Nowicki</a>, you can also check all the source code <a href="https://github.com/Kukei-eu">on GitHub</a></p>
+	<p>You can always contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or hey@nowicki.io</p>
+	<h2>Privacy policy</h2>
+	<p>This website is hosted by CloudFlare Pages. It doesn't use any extensive tracking, only basic <a href="https://blog.cloudflare.com/privacy-first-web-analytics/">privacy-first CloudFlare analytics</a> that doesn't use fingerprinting or any other IP-based techniques.</p>
+</main>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9dd156aed044831bc76da02f87e4619"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
