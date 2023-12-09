@@ -6,7 +6,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
 	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
-	<link rel="stylesheet" href="/static/search.css?v={{ hash }}" />
 	<script type="module" src="/static/modules.js?v={{ hash }}"></script>
 </head>
 <body class="{{ mainClass }}">
@@ -35,20 +34,22 @@
 						<div class="result-item-first-level__data">
 							<h4>{{ title }}</h4>
 							<p>{{ excerpt }}</p>
-							<!--								<blockquote>{{ highlight }}</blockquote>-->
+<!--							<blockquote>{{ highlight }}</blockquote>-->
 							<a href="{{ url }}">{{ url }}</a>
 						</div>
 						{{#subItems.length}}
-						<label>
-							<input type="checkbox" class="result-item-first-level__checkbox" />
-							Show more from {{hostname}} ({{ subItems.length }})
-						</label>
+						<div class="result-actions">
+							<label>
+								<input type="checkbox" class="result-item-first-level__checkbox" />
+								Show more from {{hostname}} ({{ subItems.length }})
+							</label>
+						</div>
 						<ul class="result-item-first-level__sublist">
 							{{#subItems}}
 							<li class="result-item-second-level">
 								<h4>{{ title }}</h4>
 								<p>{{ excerpt }}</p>
-								<blockquote>{{ highlight }}</blockquote>
+<!--								<blockquote>{{ highlight }}</blockquote>-->
 								<a href="{{ url }}">{{ url }}</a>
 							</li>
 							{{/subItems}}
