@@ -3,6 +3,7 @@ import template from './template.html';
 import { search, stats } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
+import {searchStackOverflow} from '../lib/searchStackOverflow.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
@@ -11,12 +12,15 @@ export const onRequestGet = async (context) => {
 
 	const startTime = Date.now();
 	const result = q ? await search(env, q, p) : null;
-	const viewDefaults = await getDefaultViewData(env);
+	const soResults = q ? await searchStackOverflow(env, q) : null;
 	const doneIn = Date.now() - startTime;
+
+	const viewDefaults = await getDefaultViewData(env);
 	const hasBlogs = result?.hits.blogs.length > 0;
 	const hasDocs = result?.hits.docs.length > 0;
 	const hasMagazines = result?.hits.magazines.length > 0;
 	const results = [];
+
 	if (hasDocs) {
 		results.push({
 			name: 'Docs',
@@ -35,6 +39,12 @@ export const onRequestGet = async (context) => {
 			hits: result.hits.magazines,
 		});
 	}
+	if (soResults) {
+		results.push({
+			name: 'Stack Overflow',
+			hits: soResults,
+		});
+	}
 
 	const hasQuery = !!q;
 	const mainClass = classNames('body', {
@@ -51,6 +61,7 @@ export const onRequestGet = async (context) => {
 		noResults: !(hasBlogs || hasDocs),
 		hasResults: results.length > 0,
 		doneIn,
+		noSOResults: !soResults,
 	};
 
 	const html = Mustache.render(template, view);

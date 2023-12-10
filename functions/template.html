@@ -24,6 +24,9 @@
 	{{#hasQuery}}
 		<div class="results">
 			<h2>Results <span>generated in {{ doneIn }}ms</span></h2>
+			{{#noSOResults}}
+			<p>No results from Stack Overflow this time due to some error, possibly we're throttled.</p>
+			{{/noSOResults}}
 			{{#hasResults}}
 			{{#results}}
 			<section>
@@ -33,9 +36,13 @@
 					<li class="result-item-first-level">
 						<div class="result-item-first-level__data">
 							<h4>{{ title }}</h4>
-							<p>{{ excerpt }}</p>
-<!--							<blockquote>{{ highlight }}</blockquote>-->
-							<a href="{{ url }}">{{ url }}</a>
+							{{#excerpt}}
+								<p>{{ excerpt }}</p>
+							{{/excerpt}}
+							{{#excerptSafe}}
+								<p>{{{ excerptSafe }}}</p>
+							{{/excerptSafe}}
+							<a href="{{ url }}" target="_blank">{{ url }}</a>
 						</div>
 						{{#subItems.length}}
 						<div class="result-actions">
@@ -48,9 +55,13 @@
 							{{#subItems}}
 							<li class="result-item-second-level">
 								<h4>{{ title }}</h4>
+								{{#excerpt}}
 								<p>{{ excerpt }}</p>
-<!--								<blockquote>{{ highlight }}</blockquote>-->
-								<a href="{{ url }}">{{ url }}</a>
+								{{/excerpt}}
+								{{#excerptSafe}}
+								<p>{{{ excerptSafe }}}</p>
+								{{/excerptSafe}}
+								<a href="{{ url }}" target="_blank">{{ url }}</a>
 							</li>
 							{{/subItems}}
 						</ul>
@@ -72,7 +83,7 @@
 	<h2 class="visually-hidden">About</h2>
 	<p class="about__brand">Kukey.eu - curated search for web developers</p>
 	<p>Super MVP, contact me on <a href="https://social.nowicki.io/@hey">Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
-	<p>So far indexed <format-number>{{totalPages}}</format-number> pages, including <format-number>{{ blogPages }}</format-number> pages of blogs, <format-number>{{ magazinesPages}}</format-number> pages of magazines and <format-number>{{ docsPages }}</format-number> pages of docs.</p>
+	<p>So far indexed <format-number>{{totalPages}}</format-number> pages, including <format-number>{{ blogPages }}</format-number> pages of blogs, <format-number>{{ magazinesPages}}</format-number> pages of magazines and <format-number>{{ docsPages }}</format-number> pages of docs + Stack Overflow search integration.</p>
 	<p>See all sources <a href="https://github.com/Kukei-eu/spider/blob/main/index-sources.json">on GitHub</a>. Edits welcomed!</p>
 	<p><a href="/about">About (Impressum)</a>, <a href="/status">Index status</a></p>
 </footer>

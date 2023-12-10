@@ -151,6 +151,11 @@ body.body--has-query {
 			grid-template-columns: min(70ch, 100%);
 			box-shadow: -3px 4lh 0 0 var(--color-background), -3px 0 0 0;
 			grid-area: results;
+
+			& > section {
+				margin-top: 2rem;
+				box-shadow: 4rem -2px 0 1px var(--color-background), 0 -2px 0 0;
+			}
 		}
 	}
 }
@@ -244,5 +249,9 @@ body.stats {
 		box-shadow: 4lh 2px 0 1px var(--color-background), -2px 2px 0 1px;
 		display: block;
 		text-align: left;
+
+		& h2 {
+			margin-top: 2rem;
+		}
 	}
 }
