@@ -225,6 +225,15 @@ ul.list {
 	& li {
 		display: list-item;
 		list-style: circle;
+
+		& ul {
+			display: block;
+
+			& li {
+				list-style: square;
+				margin-bottom: .75em;
+			}
+		}
 	}
 }
 
