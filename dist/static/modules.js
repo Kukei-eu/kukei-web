@@ -19,7 +19,7 @@ class FormatDate extends HTMLElement {
 
 	formatNumber(number) {
 		try {
-			const parsed = new Date(parseInt(number, 10));
+			const parsed = new Date(number);
 			if (!isFinite(parsed)) {
 				throw new Error('Invalid date');
 			}

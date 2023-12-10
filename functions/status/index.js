@@ -26,7 +26,6 @@ const getIndexStats = async (envs) => {
 export const onRequestGet = async (context) => {
 	const { env } = context;
 	const indexStats = await getIndexStats(env);
-	console.log(indexStats);
 	const viewDefaults = await getDefaultViewData(env);
 
 	const indexMap = new Map();
@@ -41,7 +40,10 @@ export const onRequestGet = async (context) => {
 				indexMap.set(curr.index, existingIndex);
 				acc.push(existingIndex);
 			}
-			existingIndex.elements.push(curr);
+			existingIndex.elements.push({
+				...curr,
+				lastCrawledAtHumanReadable: (new Date(curr.lastCrawledAt)).toISOString(),
+			});
 
 			return acc;
 		}, [])
