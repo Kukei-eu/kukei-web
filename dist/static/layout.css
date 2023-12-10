@@ -228,7 +228,8 @@ ul.list {
 	}
 }
 
-body.about {
+body.about,
+body.stats {
 	display: block;
 	& > main {
 		box-shadow: 4lh 2px 0 1px var(--color-background), -2px 2px 0 1px;

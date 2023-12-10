@@ -1,8 +1,8 @@
 import Mustache from 'mustache';
 import template from './template.html';
 import { search, stats } from '../lib/search.js';
-import hash from './version.js';
-import classNames from 'html-classnames'
+import classNames from 'html-classnames';
+import {getDefaultViewData} from '../lib/view.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
@@ -11,11 +11,7 @@ export const onRequestGet = async (context) => {
 
 	const startTime = Date.now();
 	const result = q ? await search(env, q, p) : null;
-	const [
-		blogPages,
-		docsPages,
-		magazinesPages,
-	] = await stats(env);
+	const viewDefaults = await getDefaultViewData(env);
 	const doneIn = Date.now() - startTime;
 	const hasBlogs = result?.hits.blogs.length > 0;
 	const hasDocs = result?.hits.docs.length > 0;
@@ -46,6 +42,7 @@ export const onRequestGet = async (context) => {
 	});
 
 	const view = {
+		...viewDefaults,
 		q,
 		title: 'kukei.eu',
 		results,
@@ -54,11 +51,6 @@ export const onRequestGet = async (context) => {
 		noResults: !(hasBlogs || hasDocs),
 		hasResults: results.length > 0,
 		doneIn,
-		hash,
-		blogPages,
-		docsPages,
-		magazinesPages,
-		totalPages: blogPages + docsPages + magazinesPages,
 	};
 
 	const html = Mustache.render(template, view);
