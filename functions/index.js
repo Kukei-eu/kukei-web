@@ -7,9 +7,6 @@ import {emitPageView} from '../lib/plausible.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
-	// Send anonymous event to Plausible.io.
-	// This still doesn't mean user consent is needed as we don't even send the IP address..
-	emitPageView(context);
 	const { searchParams } = new URL(request.url);
 	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
 
@@ -47,6 +44,14 @@ export const onRequestGet = async (context) => {
 		'--has-query': hasQuery,
 	});
 
+	const hasResults = results.length > 0
+	// Send anonymous event to Plausible.io.
+	// This still doesn't mean user consent is needed as we don't even send the IP address..
+	emitPageView(context, {
+		q,
+		hasResults,
+	});
+
 	const view = {
 		...viewDefaults,
 		q,
@@ -54,8 +59,8 @@ export const onRequestGet = async (context) => {
 		results,
 		hasQuery,
 		mainClass,
-		noResults: !(hasBlogs || hasDocs),
-		hasResults: results.length > 0,
+		noResults: !hasResults,
+		hasResults,
 		doneIn,
 	};
 
