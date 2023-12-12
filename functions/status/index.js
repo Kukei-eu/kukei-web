@@ -1,6 +1,7 @@
 import Mustache from 'mustache';
 import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
+import {emitPageView} from "../../lib/plausible.js";
 
 const getIndexStats = async (envs) => {
 	const uri = `${envs.ATLAS_URI}/action/find`;
@@ -24,6 +25,7 @@ const getIndexStats = async (envs) => {
 	return response?.documents ?? [];
 };
 export const onRequestGet = async (context) => {
+	emitPageView(context);
 	const { env } = context;
 	const indexStats = await getIndexStats(env);
 	const viewDefaults = await getDefaultViewData(env);
