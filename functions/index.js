@@ -3,7 +3,6 @@ import template from './template.html';
 import { search, stats } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
-import {searchStackOverflow} from '../lib/searchStackOverflow.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
@@ -12,7 +11,6 @@ export const onRequestGet = async (context) => {
 
 	const startTime = Date.now();
 	const result = q ? await search(env, q, p) : null;
-	const soResults = q ? await searchStackOverflow(env, q) : null;
 	const doneIn = Date.now() - startTime;
 
 	const viewDefaults = await getDefaultViewData(env);
@@ -39,12 +37,6 @@ export const onRequestGet = async (context) => {
 			hits: result.hits.magazines,
 		});
 	}
-	if (soResults) {
-		results.push({
-			name: 'Stack Overflow',
-			hits: soResults,
-		});
-	}
 
 	const hasQuery = !!q;
 	const mainClass = classNames('body', {
@@ -61,7 +53,6 @@ export const onRequestGet = async (context) => {
 		noResults: !(hasBlogs || hasDocs),
 		hasResults: results.length > 0,
 		doneIn,
-		noSOResults: !soResults,
 	};
 
 	const html = Mustache.render(template, view);
