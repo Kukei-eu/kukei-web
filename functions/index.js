@@ -45,8 +45,7 @@ export const onRequestGet = async (context) => {
 	});
 
 	const hasResults = results.length > 0
-	// Send anonymous event to Plausible.io.
-	// This still doesn't mean user consent is needed as we don't even send the IP address..
+
 	emitPageView(context, {
 		q,
 		hasResults,

@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "html-classnames": "^1.0.0",
+    "ip-anonymize": "^0.1.0",
     "meilisearch": "^0.36.0",
     "mustache": "^4.2.0"
   }
