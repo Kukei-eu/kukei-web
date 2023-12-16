@@ -24,10 +24,47 @@ const getIndexStats = async (envs) => {
 
 	return response?.documents ?? [];
 };
+
+export const getUnchecked = async (envs) => {
+	const uri = `${envs.ATLAS_URI}/action/aggregate`;
+	const request = await fetch(uri, {
+		method: 'POST',
+		headers: {
+			'api-key': envs.ATLAS_API_KEY,
+			'content-type': 'application/json',
+			'access-control-request-headers': '*',
+		},
+		body: JSON.stringify({
+			collection: `${envs.ATLAS_COLLECTION}-links`,
+			database: envs.ATLAS_DB,
+			dataSource: envs.ATLAS_SOURCE,
+			pipeline: [
+				{
+					$match: {
+						lastCrawledAt: {$exists: false}
+					},
+				},
+				{
+					$group: {
+						_id: '$source',
+						count: {$sum: 1}
+					}
+				}
+			]
+		})
+	});
+
+	const response = await request.json();
+
+	return response?.documents?.[0]?.count ?? null;
+};
+
 export const onRequestGet = async (context) => {
 	emitPageView(context);
 	const { env } = context;
 	const indexStats = await getIndexStats(env);
+	const unchecked = await getUnchecked(env);
+	const uncheckedLang = unchecked === null ? 'unknown' : unchecked;
 	const viewDefaults = await getDefaultViewData(env);
 
 	const indexMap = new Map();
@@ -61,6 +98,7 @@ export const onRequestGet = async (context) => {
 		...viewDefaults,
 		title: 'Index statistics - kukei.eu',
 		finalStats,
+		uncheckedLang,
 	};
 
 	const html = Mustache.render(template, view);

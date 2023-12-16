@@ -233,10 +233,15 @@ ul.list {
 
 		& ul {
 			display: block;
+			margin-left: 1rem;
 
 			& li {
 				list-style: square;
 				margin-bottom: .75em;
+
+				& a {
+					line-break: anywhere;
+				}
 			}
 		}
 	}
