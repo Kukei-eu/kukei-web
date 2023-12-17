@@ -46,7 +46,8 @@ export const onRequestGet = async (context) => {
 
 	const hasResults = results.length > 0;
 
-	emitPageView(context, {
+	// without await it might get killed before sending by cloudflare
+	await emitPageView(context, {
 		hasResults,
 	});
 
