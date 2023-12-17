@@ -44,7 +44,7 @@ export const onRequestGet = async (context) => {
 		'--has-query': hasQuery,
 	});
 
-	const hasResults = results.length > 0
+	const hasResults = results.length > 0;
 
 	emitPageView(context, {
 		hasResults,
