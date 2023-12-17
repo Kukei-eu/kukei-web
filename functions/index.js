@@ -1,6 +1,6 @@
 import Mustache from 'mustache';
 import template from './template.html';
-import { search, stats } from '../lib/search.js';
+import { search } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
