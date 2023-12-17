@@ -47,7 +47,6 @@ export const onRequestGet = async (context) => {
 	const hasResults = results.length > 0
 
 	emitPageView(context, {
-		q,
 		hasResults,
 	});
 
