@@ -1,6 +1,6 @@
 import Mustache from 'mustache';
 import template from './template.html';
-import { search } from '../lib/search.js';
+import { search, getFacets } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
@@ -54,6 +54,9 @@ export const onRequestGet = async (context) => {
 		hasResults,
 	});
 
+	const facets = await getFacets(env);
+	const langs = [...facets.lang.values()].sort((a,b) => a.count > b.count ? -1 : 1);
+
 	const view = {
 		...viewDefaults,
 		q,
@@ -64,6 +67,7 @@ export const onRequestGet = async (context) => {
 		noResults: !hasResults,
 		hasResults,
 		doneIn,
+		langs,
 	};
 
 	const html = Mustache.render(template, view);
