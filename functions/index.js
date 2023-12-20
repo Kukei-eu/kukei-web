@@ -23,18 +23,21 @@ export const onRequestGet = async (context) => {
 	if (hasDocs) {
 		results.push({
 			name: 'Docs',
+			anchor: 'docs',
 			hits: result.hits.docs,
 		});
 	}
 	if (hasBlogs) {
 		results.push({
 			name: 'Blogs',
+			anchor: 'blogs',
 			hits: result.hits.blogs,
 		});
 	}
 	if (hasMagazines) {
 		results.push({
 			name: 'Magazines',
+			anchor: 'magazines',
 			hits: result.hits.magazines,
 		});
 	}

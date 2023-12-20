@@ -19,7 +19,7 @@
 </head>
 <body class="{{ mainClass }}">
 <main>
-	<form action="">
+	<form action="/">
 		<div class="headline">
 			<h1>
 				<a href="/">Kukei.eu</a>
@@ -33,10 +33,16 @@
 	{{#hasQuery}}
 		<div class="results">
 			<h2>Results <span>generated in {{ doneIn }}ms</span></h2>
+			<nav class="jump-nav">
+				<span>Jump to:</span>
+				<a href="#docs">Docs</a>
+				<a href="#blogs">Blogs</a>
+				<a href="#magazines">Magazines</a>
+			</nav>
 			{{#hasResults}}
 			{{#results}}
 			<section>
-				<h3>{{ name }}</h3>
+				<h3 id="{{ anchor }}">{{ name }}</h3>
 				<ul>
 					{{#hits}}
 					<li class="result-item-first-level">
