@@ -47,7 +47,7 @@ export const onRequestGet = async (context) => {
 		'--has-query': hasQuery,
 	});
 
-	const hasResults = results.length > 0;
+	const hasResults = hasQuery ? results.length > 0 : undefined;
 
 	// without await it might get killed before sending by cloudflare
 	await emitPageView(context, {
