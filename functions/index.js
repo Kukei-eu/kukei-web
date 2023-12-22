@@ -4,14 +4,16 @@ import { search, getFacets } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
+import {parseQuery} from '../lib/parseQuery.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
 	const { searchParams } = new URL(request.url);
-	const { q, p = 0 } = Object.fromEntries(searchParams.entries());
+	const { q} = Object.fromEntries(searchParams.entries());
+	const { q: searchQuery, lang } = parseQuery(q);
 
 	const startTime = Date.now();
-	const result = q ? await search(env, q, p) : null;
+	const result = q ? await search(env, searchQuery, lang) : null;
 	const doneIn = Date.now() - startTime;
 
 	const viewDefaults = await getDefaultViewData(env);

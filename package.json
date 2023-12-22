@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "dev": "wrangler pages dev dist --compatibility-flag=nodejs_compat --compatibility-date=2023-12-05",
+    "test": "node --test",
     "make:hash": "node ./scripts/make-hash.js",
     "build": "yarn make:hash && yarn install --production",
     "lint": "eslint ."

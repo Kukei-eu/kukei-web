@@ -27,7 +27,7 @@
 				<span> curated search for web developers</span></h1>
 		</div>
 		<div class="form-main">
-			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="Type your query" autofocus />
+			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="e.g.: snowflakes lang:en" autofocus />
 			<button type="submit">Search</button>
 		</div>
 	{{#hasQuery}}
@@ -37,7 +37,7 @@
 				<span>Jump to:</span>
 				<a href="#docs">Docs</a>
 				<a href="#blogs">Blogs</a>
-				<a href="#magazines">Magazines</a>
+				<a href="#magazines">Magazines</a>.
 			</nav>
 			{{#hasResults}}
 			{{#results}}
@@ -94,9 +94,9 @@
 <footer>
 	<h2 class="visually-hidden">About</h2>
 	<p class="about__brand">Kukei.eu - curated search for web developers</p>
-	<p>Still MVP, contact me on <a href="https://social.nowicki.io/@hey">my Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
+	<p>You can type "lang:en" for language filter.</p>
+	<p>Contact me on <a href="https://social.nowicki.io/@hey">my Mastodon</a> or check out the <a href="https://github.com/Kukei-eu">source code</a></p>
 	<p>So far indexed <format-number>{{totalPages}}</format-number> internet pages</p>
-	<p>See all sources <a href="https://github.com/Kukei-eu/spider/blob/main/index-sources.js">on GitHub</a>. Edits welcomed!</p>
 	<p><a href="/about">About (Impressum)</a>, <a href="/status">Index status</a></p>
 </footer>
 <!-- Cloudflare Web Analytics -->
