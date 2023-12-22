@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   test:
-    runs-on: alpine-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
