@@ -66,12 +66,8 @@ export const onRequestGet = async (context) => {
 			q,
 			JSON.stringify({
 				hasResults,
-			}),
-			{
-				expirationTtl: 86400, // 24h
-			}
+			})
 		);
-		await trackQuery(context.env, { q, hasResults });
 	}
 	const view = {
 		...viewDefaults,
