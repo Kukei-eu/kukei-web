@@ -7,6 +7,7 @@ import {emitPageView} from '../lib/plausible.js';
 import {parseQuery} from '../lib/parseQuery.js';
 
 export const onRequestGet = async (context) => {
+	const timestamp = Date.now();
 	const { request, env } = context;
 	const { searchParams } = new URL(request.url);
 	const { q} = Object.fromEntries(searchParams.entries());
@@ -82,6 +83,9 @@ export const onRequestGet = async (context) => {
 	};
 
 	const html = Mustache.render(template, view);
+
+	console.log(`Processing took ${Date.now() - timestamp}ms`);
+
 	return new Response(html, {
 		headers: {
 			'content-type': 'text/html',
