@@ -59,6 +59,18 @@ export const onRequestGet = async (context) => {
 	const facets = await getFacets(env);
 	const langs = [...facets.lang.values()].sort((a,b) => a.count > b.count ? -1 : 1);
 
+	// Save used queries for analytics
+	if (q) {
+		await context.env.KUKEI_QUERIES.put(
+			q,
+			JSON.stringify({
+				hasResults,
+			}),
+			{
+				expirationTtl: 86400, // 24h
+			}
+		);
+	}
 	const view = {
 		...viewDefaults,
 		q,
