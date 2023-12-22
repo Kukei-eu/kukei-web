@@ -5,7 +5,6 @@ import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
 import {parseQuery} from '../lib/parseQuery.js';
-import {trackQuery} from '../lib/mongo.js';
 
 export const onRequestGet = async (context) => {
 	const { request, env } = context;
