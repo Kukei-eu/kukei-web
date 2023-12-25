@@ -2,7 +2,7 @@ import Mustache from 'mustache';
 import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
 import {emitPageView} from '../../lib/plausible.js';
-import { getUnchecked, getIndexStats } from '../../lib/mongo.js';
+import {getUnchecked, getIndexStats, getCrawlHistory} from '../../lib/mongo.js';
 
 export const onRequestGet = async (context) => {
 	emitPageView(context);
@@ -11,6 +11,7 @@ export const onRequestGet = async (context) => {
 	const unchecked = await getUnchecked(env);
 	const uncheckedLang = unchecked === null ? 'unknown' : unchecked;
 	const viewDefaults = await getDefaultViewData(env);
+	const history = await getCrawlHistory(env);
 
 	const indexMap = new Map();
 	const finalStats = indexStats
@@ -42,6 +43,7 @@ export const onRequestGet = async (context) => {
 	const view = {
 		...viewDefaults,
 		title: 'Index statistics - kukei.eu',
+		history,
 		finalStats,
 		uncheckedLang,
 	};

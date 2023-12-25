@@ -23,6 +23,33 @@
 		<li><format-number>{{magazinesPages}}</format-number> magazines pages</li>
 	</ul>
 	<p>Pages known but yet to be crawled: <format-number>{{ uncheckedLang }}</format-number></p>
+	<h2>Index over time</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Crawled count</th>
+				<th>Known, pending</th>
+				<th>Indexed</th>
+				<th>Indexed: blogs</th>
+				<th>Index: docs</th>
+				<th>Index: magazines</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#history}}
+			<tr>
+				<td><format-date>{{ date }}</format-date></td>
+				<td><format-number>{{ crawledCount }}</format-number></td>
+				<td><format-number>{{ uncheckedLang }}</format-number></td>
+				<td><format-number>{{ totalPages }}</format-number></td>
+				<td><format-number>{{ blogPages }}</format-number></td>
+				<td><format-number>{{ docsPages }}</format-number></td>
+				<td><format-number>{{ magazinesPages }}</format-number></td>
+			</tr>
+			{{/history}}
+		</tbody>
+	</table>
 	<h2>Index sources list</h2>
 	<p>Index / url - last crawled at</p>
 	<ul class="list">

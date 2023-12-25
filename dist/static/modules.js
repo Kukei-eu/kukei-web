@@ -14,10 +14,10 @@ class FormatNumber extends HTMLElement {
 
 class FormatDate extends HTMLElement {
 	connectedCallback() {
-		this.innerHTML = this.formatNumber(this.innerHTML);
+		this.innerHTML = this.formatDate(this.innerHTML);
 	}
 
-	formatNumber(number) {
+	formatDate(number) {
 		try {
 			const parsed = new Date(number);
 			if (!isFinite(parsed)) {

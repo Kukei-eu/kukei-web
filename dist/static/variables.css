@@ -4,6 +4,7 @@
 
 	--color-background: oklch(1 0 0);
 	--color-base: oklch(0 0 0);
+	--color-base-muted: oklch(0.521 0 89.876);
 	--color-contrast-bg: oklch(0 0 0);
 	--color-contrast-fg: oklch(1 0 0);
 	--color-link: unset;
@@ -16,6 +17,7 @@
 	:root {
 		--color-background: oklch(0.25 0 0);
 		--color-base: oklch(0.84 0.06 152.17);
+		--color-base-muted: oklch(0.869 0.026 149.045);
 		--color-contrast-bg: oklch(0.84 0.06 152.17);
 		--color-contrast-fg: oklch(0.25 0 0);
 		--border-size: 4px;

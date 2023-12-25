@@ -307,3 +307,19 @@ body.stats {
 	background: var(--color-background);
 	box-shadow: var(--box-shadow-bottom);
 }
+
+table {
+	border-collapse: collapse;
+	& th, & td  {
+		padding: 0.5rem;
+		text-align: center;
+	}
+
+	& th:first-child, & td:first-child {
+		text-align: left;
+	}
+
+	& td {
+		border-bottom: 1px solid var(--color-base-muted);
+	}
+}
