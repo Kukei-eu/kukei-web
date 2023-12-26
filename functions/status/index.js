@@ -44,6 +44,7 @@ export const onRequestGet = async (context) => {
 		...viewDefaults,
 		title: 'Index statistics - kukei.eu',
 		history,
+		historyJSON: JSON.stringify(history),
 		finalStats,
 		uncheckedLang,
 	};

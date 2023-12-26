@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
 	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
 	<script type="module" src="/static/modules.js?v={{ hash }}"></script>
+	<script type="module" src="/static/history-chart.js?v={{ hash }}"></script>
 	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml" sizes="any" />
 	<link rel="icon" href="/static/favicon.png" type="image/png" sizes="600x600" />
 	<link rel="icon" href="/static/favicon-32x32.png" type="image/png" sizes="32x32" />
@@ -24,6 +25,7 @@
 	</ul>
 	<p>Pages known but yet to be crawled: <format-number>{{ uncheckedLang }}</format-number></p>
 	<h2>Index over time</h2>
+	<history-chart chart-data="{{ historyJSON }}"></history-chart>
 	<table>
 		<thead>
 			<tr>
@@ -41,11 +43,11 @@
 			<tr>
 				<td><format-date>{{ date }}</format-date></td>
 				<td><format-number>{{ crawledCount }}</format-number></td>
-				<td><format-number>{{ uncheckedLang }}</format-number></td>
-				<td><format-number>{{ totalPages }}</format-number></td>
-				<td><format-number>{{ blogPages }}</format-number></td>
-				<td><format-number>{{ docsPages }}</format-number></td>
-				<td><format-number>{{ magazinesPages }}</format-number></td>
+				<td><format-number>{{ unCrawledCount }}</format-number></td>
+				<td><format-number>{{ totalIndex }}</format-number></td>
+				<td><format-number>{{ blogIndex }}</format-number></td>
+				<td><format-number>{{ docsIndex }}</format-number></td>
+				<td><format-number>{{ magazinesIndex }}</format-number></td>
 			</tr>
 			{{/history}}
 		</tbody>
