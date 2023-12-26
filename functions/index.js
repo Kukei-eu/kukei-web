@@ -13,14 +13,6 @@ export const onRequestGet = async (context) => {
 	const { searchParams } = new URL(request.url);
 	const { q} = Object.fromEntries(searchParams.entries());
 	const { q: searchQuery, lang } = parseQuery(q);
-	// Save used queries for analytics
-	if (q) {
-		trackQuery(context.env, { q, hasResults })
-			.catch(error => {
-				console.error('Could not send mongo analytics', error);
-			});
-	}
-
 	const searchTimeStamp = Date.now();
 	const result = q ? await search(env, searchQuery, lang) : null;
 	const doneIn = Date.now() - searchTimeStamp;
@@ -65,6 +57,13 @@ export const onRequestGet = async (context) => {
 	console.log(`Processing results milestone took ${Date.now() - startTime}ms`);
 
 	const hasResults = hasQuery ? results.length > 0 : undefined;
+	// Save used queries for analytics
+	if (q) {
+		trackQuery(context.env, { q, hasResults })
+			.catch(error => {
+				console.error('Could not send mongo analytics', error);
+			});
+	}
 
 	// without await it might get killed before sending by cloudflare
 	await emitPageView(context, {
