@@ -9,6 +9,14 @@ import {trackQuery} from '../lib/mongo.js';
 
 export const onRequestGet = async (context) => {
 	const startTime = Date.now();
+	// Save used queries for analytics
+	if (q) {
+		trackQuery(context.env, { q, hasResults })
+			.catch(error => {
+				console.error('Could not send mongo analytics', error);
+			});
+	}
+
 	const { request, env } = context;
 	const { searchParams } = new URL(request.url);
 	const { q} = Object.fromEntries(searchParams.entries());
@@ -70,19 +78,6 @@ export const onRequestGet = async (context) => {
 
 	const langs = [...facets.lang.values()].sort((a,b) => a.count > b.count ? -1 : 1);
 
-	// Save used queries for analytics
-	if (q) {
-		await context.env.KUKEI_QUERIES.put(
-			q,
-			JSON.stringify({
-				hasResults,
-			}),
-			{
-				expirationTtl: 86400, // 24h
-			}
-		);
-		await trackQuery(context.env, { q, hasResults });
-	}
 	const view = {
 		...viewDefaults,
 		q,
