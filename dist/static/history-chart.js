@@ -9,7 +9,6 @@ class HistoryChart extends HTMLElement {
 		}));
 
 		const data = dataRaw.sort((a, b) => (a.created > b.created ? 1 : -1));
-		console.log(data);
 		const root = document.createElement('canvas');
 		this.appendChild(root);
 
@@ -44,6 +43,7 @@ class HistoryChart extends HTMLElement {
 				],
 			},
 			options: {
+				responsive: true,
 				scales: {
 					x: {
 						display: false,
