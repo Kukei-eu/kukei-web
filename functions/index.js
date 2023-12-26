@@ -9,6 +9,10 @@ import {trackQuery} from '../lib/mongo.js';
 
 export const onRequestGet = async (context) => {
 	const startTime = Date.now();
+	const { request, env } = context;
+	const { searchParams } = new URL(request.url);
+	const { q} = Object.fromEntries(searchParams.entries());
+	const { q: searchQuery, lang } = parseQuery(q);
 	// Save used queries for analytics
 	if (q) {
 		trackQuery(context.env, { q, hasResults })
@@ -16,11 +20,6 @@ export const onRequestGet = async (context) => {
 				console.error('Could not send mongo analytics', error);
 			});
 	}
-
-	const { request, env } = context;
-	const { searchParams } = new URL(request.url);
-	const { q} = Object.fromEntries(searchParams.entries());
-	const { q: searchQuery, lang } = parseQuery(q);
 
 	const searchTimeStamp = Date.now();
 	const result = q ? await search(env, searchQuery, lang) : null;
