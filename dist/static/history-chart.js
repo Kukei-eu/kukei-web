@@ -44,6 +44,7 @@ class HistoryChart extends HTMLElement {
 			},
 			options: {
 				responsive: true,
+				maintainAspectRatio: false,
 				scales: {
 					x: {
 						display: false,

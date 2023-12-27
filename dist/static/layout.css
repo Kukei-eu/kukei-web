@@ -316,10 +316,17 @@ table {
 		position: sticky;
 		top: 0;
 		background: var(--color-background);
+		z-index: 1;
 	}
 	& th, & td  {
 		padding: 0.5rem;
 		text-align: center;
+	}
+
+	& tbody > tr > td:first-child {
+		position: sticky;
+		left: 0;
+		background: var(--color-background);
 	}
 
 	& th:first-child, & td:first-child {
@@ -333,5 +340,6 @@ table {
 history-chart {
 	position: relative;
 	width: var(--width-max-content-wide);
+	height: max(50vh, 400px);
 	display: block;
 }
