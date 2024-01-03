@@ -3,7 +3,7 @@ import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
 import {emitPageView} from '../../lib/plausible.js';
 import {renderHtml} from '../../lib/sso-render.js';
-import {getRandomBlog} from "../../lib/search.js";
+import {getRandomBlog} from '../../lib/search.js';
 
 export const onRequestGet = async (context) => {
 	emitPageView(context);

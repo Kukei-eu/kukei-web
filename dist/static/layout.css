@@ -308,7 +308,13 @@ body.inspire {
 .inspire-entry {
 	margin: 2rem 0;
 	width: var(--width-max-content);
-	box-shadow: -.5rem 0 0 1px var(--color-background), calc(-.5rem - 3px) 0 0 0
+	box-shadow: -.5rem 0 0 1px var(--color-background), calc(-.5rem - 3px) 0 0 0;
+
+	& a {
+		word-break: break-word;
+		hyphens: auto;
+		hyphenate-character: "↵";
+	}
 }
 
 .jump-nav {
