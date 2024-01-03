@@ -16,7 +16,7 @@ export const onRequestGet = async (context) => {
 	const view = {
 		...viewDefaults,
 		mainClass: 'body inspire',
-		title: 'About kukei.eu',
+		title: 'Get inspired - random blog post per load - kukei.eu',
 		entries: [entry],
 	};
 	const html = await renderHtml(template, view);
