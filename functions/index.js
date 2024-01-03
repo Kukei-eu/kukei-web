@@ -82,6 +82,7 @@ export const onRequestGet = async (context) => {
 		title: 'kukei.eu',
 		results,
 		hasQuery,
+		noQuery: !hasQuery,
 		mainClass,
 		noResults: !hasResults,
 		hasResults,

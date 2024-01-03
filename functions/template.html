@@ -11,6 +11,9 @@
 			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="e.g.: snowflakes lang:en" autofocus />
 			<button type="submit">Search</button>
 		</div>
+		{{#noQuery}}
+		<p>or <a href="/inspire">get inspired</a></p>
+		{{/noQuery}}
 	{{#hasQuery}}
 		<div class="results">
 			<h2>Results <span>generated in {{ doneIn }}ms</span></h2>

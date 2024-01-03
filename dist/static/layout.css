@@ -300,6 +300,17 @@ body.stats {
 	}
 }
 
+body.inspire {
+	height: 100%;
+	display: grid;
+
+}
+.inspire-entry {
+	margin: 2rem 0;
+	width: var(--width-max-content);
+	box-shadow: -.5rem 0 0 1px var(--color-background), calc(-.5rem - 3px) 0 0 0
+}
+
 .jump-nav {
 	position: sticky;
 	top: 0;

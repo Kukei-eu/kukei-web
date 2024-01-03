@@ -2,7 +2,7 @@ import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
 import {emitPageView} from '../../lib/plausible.js';
 import {getUnchecked, getIndexStats, getCrawlHistory} from '../../lib/mongo.js';
-import {renderHtml} from "../../lib/sso-render.js";
+import {renderHtml} from '../../lib/sso-render.js';
 
 export const onRequestGet = async (context) => {
 	emitPageView(context);
