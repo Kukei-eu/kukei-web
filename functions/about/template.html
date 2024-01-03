@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>{{ title }} </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
-	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
-	<script type="module" src="/static/modules.js?v={{ hash }}"></script>
-	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml" sizes="any" />
-	<link rel="icon" href="/static/favicon.png" type="image/png" sizes="600x600" />
-	<link rel="icon" href="/static/favicon-32x32.png" type="image/png" sizes="32x32" />
-</head>
-<body class="about">
+{{{ before }}}
 <main>
 	<h1><a href="/">Kukei.eu</a></h1>
 	<h2>What is it</h2>
@@ -27,7 +14,4 @@
 	<h2>Privacy policy</h2>
 	<p>This website is hosted by CloudFlare Pages. It doesn't use any extensive tracking, only basic <a href="https://blog.cloudflare.com/privacy-first-web-analytics/">privacy-first CloudFlare analytics</a> that doesn't use fingerprinting or any other IP-based techniques and <a href="https://plausible.io">Plausible.io powered</a>, backend proxied tracking to further anonymize visitors IP</p>
 </main>
-<!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9dd156aed044831bc76da02f87e4619"}'></script><!-- End Cloudflare Web Analytics -->
-</body>
-</html>
+{{{ after }}}

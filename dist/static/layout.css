@@ -289,9 +289,8 @@ ul.list {
 
 body.about,
 body.stats {
-	display: block;
+	height: auto;
 	& > main {
-		box-shadow: var(--box-shadow-corner);
 		display: block;
 		text-align: left;
 

@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>{{ title }} </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="/static/variables.css?v={{ hash }}" />
-	<link rel="stylesheet" href="/static/layout.css?v={{ hash }}" />
-	<script type="module" src="/static/modules.js?v={{ hash }}"></script>
-	<script type="module" src="/static/history-chart.js?v={{ hash }}"></script>
-	<link rel="icon" href="/static/favicon.svg" type="image/svg+xml" sizes="any" />
-	<link rel="icon" href="/static/favicon.png" type="image/png" sizes="600x600" />
-	<link rel="icon" href="/static/favicon-32x32.png" type="image/png" sizes="32x32" />
-</head>
-<body class="stats">
+{{{ before }}}
+<script type="module" src="/static/history-chart.js?v={{ hash }}"></script>
 <main>
 	<h1><a href="/">Kukei.eu</a></h1>
 	<h2>Index statistics</h2>
@@ -67,7 +54,5 @@
 		{{/finalStats}}
 	</ul>
 </main>
-<!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f9dd156aed044831bc76da02f87e4619"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
-</html>
+{{{ after }}}

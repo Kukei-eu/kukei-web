@@ -1,4 +1,3 @@
-import Mustache from 'mustache';
 import template from './template.html';
 import { search, getFacets } from '../lib/search.js';
 import classNames from 'html-classnames';
@@ -6,6 +5,7 @@ import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
 import {parseQuery} from '../lib/parseQuery.js';
 import {trackQuery} from '../lib/mongo.js';
+import {renderHtml} from "../lib/sso-render.js";
 
 export const onRequestGet = async (context) => {
 	const startTime = Date.now();
@@ -89,7 +89,7 @@ export const onRequestGet = async (context) => {
 		langs,
 	};
 
-	const html = Mustache.render(template, view);
+	const html = await renderHtml(template, view)
 	console.log(`Last milestone took ${Date.now() - startTime}ms`);
 
 	return new Response(html, {
