@@ -1,0 +1,21 @@
+{{{ before }}}
+<main>
+	<h1>Thank you</h1>
+	<p>Many thanks for your feedback. If you want you can add some more!</p>
+	<p>Once you send this form, it would be saved in kukei.eu database and removed once your feedback is processed. <br/>  I might contact you later if you provide your contact info.</p>
+	<form action="/api/feedback/enhance" method="POST" class="feedback-enhance-form">
+		<input type="hidden" name="token" value="{{ token }}" />
+		<input type="hidden" value="{{ q }}" name="q" />
+		<div class="feedback-enhance-form__group">
+			<label for="comment">Your comment</label>
+			<textarea id="comment" name="comment"></textarea>
+		</div>
+		<div class="feedback-enhance-form__group">
+			<label for="contact">How to contact you?</label>
+			<input type="text" id="contact" name="contact" placeholder="Mastodon handle, email, whatever you wish" />
+		</div>
+		<button type="submit">Send</button>
+		<a href="/?q={{ q }}">nah, send me back to my results</a>
+	</form>
+</main>
+{{{ after }}}

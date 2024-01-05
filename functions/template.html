@@ -1,6 +1,6 @@
 {{{ before }}}
 <main>
-	<form action="/">
+	<form action="/" class="search-form">
 		<div class="headline">
 			<h1>
 				<a href="/">Kukei.eu</a>
@@ -74,5 +74,17 @@
 		</div>
 	{{/hasQuery}}
 	</form>
+	{{#hasQuery}}
+	<form action="/api/feedback" method="POST" class="feedback-widget">
+		<h2>Feedback</h2>
+		<p>This is still a new project. I need you help to fine tune it. <br/> Are the results any good?</p>
+		<div class="feedback-widget__buttons">
+			<button name="vote" value="1" type="submit" class="button--secondary">👍</button>
+			<button name="vote" value="-1" type="submit" class="button--secondary">👎</button>
+		</div>
+		<input type="hidden" name="q" value="{{ q }}" />
+
+	</form>
+	{{/hasQuery}}
 </main>
 {{{ after }}}

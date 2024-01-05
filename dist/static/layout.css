@@ -88,7 +88,7 @@ main {
 	align-items: center;
 	justify-content: center;
 
-	& form {
+	& form.search-form {
 		display: flex;
 		width: min(70ch, 100%);
 		height: 100%;
@@ -117,7 +117,7 @@ body.body--has-query {
 	display: grid;
 	height: auto;
 
-	& > main > form {
+	& > main > form.search-form {
 		width: 100%;
 		display: grid;
 		grid-template-areas:
@@ -149,9 +149,10 @@ body.body--has-query {
 				transform: scale(1.005);
 			}
 
-			& input {
-				box-shadow: 0 0 0 2px var(--color-base);
-			}
+		}
+
+		& input[type="search"] {
+			box-shadow: 0 0 0 2px var(--color-base);
 		}
 
 		& .results {
@@ -197,7 +198,9 @@ body.body--has-query {
 	}
 }
 
-input[type="search"] {
+input[type="search"],
+input[type="text"],
+textarea {
 	font-family: var(--font-family-base);
 	padding: .75rem 0.5rem;
 	width: 100%;
@@ -231,6 +234,19 @@ button {
 	}
 }
 
+.button--secondary {
+	box-shadow: none;
+	background: var(--color-background);
+	color: var(--color-base);
+	border: 2px solid var(--color-base);
+
+	&:hover,
+	&:focus,
+	&:active {
+		box-shadow: 0 0 0 4px var(--color-contrast-bg);
+	}
+}
+
 
 
 blockquote {
@@ -244,6 +260,10 @@ blockquote {
 	}
 	& div.result-actions:has(.result-item-first-level__checkbox:checked) ~ .result-item-first-level__sublist {
 		display: block;
+	}
+
+	.result-item-second-level {
+		margin-bottom: 2rem;
 	}
 
 	& .result-actions {
@@ -358,4 +378,28 @@ history-chart {
 	width: var(--width-max-content-wide);
 	height: max(50vh, 400px);
 	display: block;
+}
+
+.feedback-widget {
+	max-width: var(--width-max-content);
+	display: grid;
+	align-self: start;
+
+	& .feedback-widget__buttons {
+		display: flex;
+		align-items: start;
+		gap: 1rem;
+	}
+}
+
+.feedback-enhance-form {
+	display: grid;
+	width: var(--width-max-content);
+	gap: 2rem;
+	margin: 2rem 0 0;
+
+	& .feedback-enhance-form__group {
+		display: grid;
+		gap: .5rem;
+	}
 }
