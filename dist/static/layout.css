@@ -313,9 +313,16 @@ body.stats {
 	& > main {
 		display: block;
 		text-align: left;
+		width: var(--width-max-content);
 
 		& h2 {
 			margin-top: 2rem;
+		}
+
+		& img,
+		& video {
+			width: 100%;
+			height: auto;
 		}
 	}
 }

@@ -4,12 +4,12 @@
 	<p>Having cool web search engine is cool but if it doesn't work with any muscle memory then you'd always end up using your general use default search engine.</p>
 	<p>Here are some tips how to integrate kukei.eu in your daily work:</p>
 
-	<h2>Firefox - add a shortcut</h2>
+	<h2 id="firefox">Firefox - add a shortcut</h2>
 	<p>If you use Firefox as your main browser, you are lucky. Firefox has an amazing `opensearch` integration/UX.</p>
 	<p>Kukei.eu supports opensearch standard so once you visit the website once, you can configure an alias (e.g. @ku) which you can later use to search via kukei.eu instead of your default engine.</p>
 	<p>More information on how to configure it are available on <a href="https://support.mozilla.org/en-US/kb/add-or-remove-search-engine-firefox" rel="noreferrer noopener">Firefox website</a></p>
 
-	<h2>Siri shortcut</h2>
+	<h2 id="siri">Siri shortcut</h2>
 	<p>For macOS users there's also a nice way to have kukei.eu always available, no matter what context.</p>
 	<p>You can use a Siri Shortcut that I prepared for you. Here's how to use it:</p>
 	<ul class="list">
@@ -21,5 +21,25 @@
 	<p>
 		<video muted src="/static/siri-shortcut-ios-example.mp4" controls></video>
 	</p>
+
+	<h2 id="alfred">Alfred</h2>
+	<p>If you're an Alfred user this url will add a kukei.eu shortcut to your settings.</p>
+	<p>alfred://customsearch/Kukei/kk/utf8/nospace/https://kukei.eu?q=%7Bquery%7D</p>
+	<p>Screenshots of the config:</p>
+	<p>
+		<img
+			src="/static/integration-kukei-alfred.png"
+			alt="Screenshot of Alfred app settings with Web Search shortcut open with following inputs: Search URL: https://kukei.eu?q={query}, Encode spaces as (empty), Title: Kukei, Keyword: kk"
+			width="1292"
+			height="878"
+		/>
+		<img
+			src="/static/integration-kukei-alfred-2.png"
+			alt="Screenshot of Alfred app prompt with 'kk vue router' query and 'Kukei' shortcut presented as the action item"
+			width="764"
+			height="172"
+		/>
+	</p>
+	<p>P.S. Alfred instruction and screenshots provided by <a href="https://vickerson.me/@josh/111721657107931591">@josh@vickerson.me</a>. Idea of integrating Alfred in general: <a href="https://status.pointless.one/@pointlessone/111721303817999242">@pointlessone@status.pointless.one</a>. Thank you!</p>
 </main>
 {{{ after }}}
