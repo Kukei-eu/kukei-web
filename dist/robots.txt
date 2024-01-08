@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Allow: /about
 Allow: /status
+Allow: /integrations
+Allow: /inspire
 Disallow: /*?*
