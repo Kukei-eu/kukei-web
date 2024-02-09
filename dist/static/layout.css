@@ -186,7 +186,7 @@ body.body--has-query {
 
 @media screen and (max-width: 600px) {
 	body.body--has-query {
-		& > main > form {
+		& > main > form.search-form {
 			width: 100%;
 			display: grid;
 			grid-template-areas:
@@ -408,5 +408,16 @@ history-chart {
 	& .feedback-enhance-form__group {
 		display: grid;
 		gap: .5rem;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.mobile-only {
+		display: none;
+	}
+}
+@media screen and (max-width: 599px) {
+	.desktop-only {
+		display: none;
 	}
 }

@@ -9,7 +9,10 @@
 		</div>
 		<div class="form-main">
 			<input type="search" name="q" value="{{ q }}" aria-label="Search" placeholder="e.g.: snowflakes lang:en" autofocus />
-			<button type="submit">Search</button>
+			<button type="submit" aria-label="Search">
+				<span class="desktop-only">Search</span>
+				<span class="mobile-only">>></span>
+			</button>
 		</div>
 		{{#noQuery}}
 		<p><a href="/integrations">check integrations</a> or <a href="/inspire">get inspired</a></p>
