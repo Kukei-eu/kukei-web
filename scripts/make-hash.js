@@ -9,7 +9,7 @@ const versionId = versionHash.digest('hex');
 const main = async () => {
 	const dirname = import.meta.dirname;
 	const content = `export default '${versionId}';`;
-	const path = resolve(dirname, '../functions/version.js');
+	const path = resolve(dirname, '../server/version.js');
 	await writeFile(path, content, 'utf-8');
 };
 

@@ -1,12 +1,13 @@
-import Mustache from 'mustache';
-import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
 import {emitPageView} from '../../lib/plausible.js';
 import {renderHtml} from '../../lib/sso-render.js';
+import {getTemplate} from "../../lib/sso-render.js";
 
-export const onRequestGet = async (context) => {
-	emitPageView(context);
-	const { env } = context;
+const template = getTemplate(import.meta.dirname, './template.html');
+
+export const integrationsController = async (req, res) => {
+	emitPageView(req);
+	const { env } = req;
 
 	const viewDefaults = await getDefaultViewData(env);
 	const view = {
@@ -16,9 +17,5 @@ export const onRequestGet = async (context) => {
 	};
 	const html = await renderHtml(template, view);
 
-	return new Response(html, {
-		headers: {
-			'content-type': 'text/html',
-		},
-	});
+	res.status(200).send(html);
 };
