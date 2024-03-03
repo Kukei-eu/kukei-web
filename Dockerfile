@@ -7,4 +7,5 @@ COPY . .
 RUN yarn install
 
 RUN yarn make:hash
+
 CMD yarn start
