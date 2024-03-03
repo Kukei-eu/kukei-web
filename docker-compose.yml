@@ -8,4 +8,4 @@ services:
       - .env
     network_mode: "host"
     ports:
-      - "8001:3000"
+      - "8001:3001"
