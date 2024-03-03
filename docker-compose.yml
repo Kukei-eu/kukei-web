@@ -7,5 +7,3 @@ services:
     env_file:
       - .env
     network_mode: "host"
-    ports:
-      - "8001:3001"
