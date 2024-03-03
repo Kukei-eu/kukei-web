@@ -74,7 +74,7 @@ export const getUnchecked = async () => {
 		{ maxTimeMS: 60000, allowDiskUse: true }
 	).toArray();
 
-	return result.unCrawled;
+	return result?.unCrawled ?? 0;
 };
 
 export const trackQuery = async ({q, hasResults}) => {
