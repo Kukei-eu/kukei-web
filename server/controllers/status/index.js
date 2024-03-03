@@ -6,6 +6,8 @@ import {getTemplate, renderHtml} from '../../lib/sso-render.js';
 const template = getTemplate(import.meta.dirname, './template.html');
 
 export const statusController = async (req, res) => {
+	// Custom CSP
+	res.header('Content-Security-Policy', 'script-src \'self\' https://cdn.jsdelivr.net');
 	emitPageView(req);
 	const { env } = req;
 	const indexStats = await getIndexStats();
