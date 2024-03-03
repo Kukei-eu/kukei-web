@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import helmet from 'helmet';
 import { withAsyncErrorHandler } from './lib/withAsyncErrorHandler.js';
 import { indexController } from './controllers/index.js';
 import { statusController } from './controllers/status/index.js';
@@ -11,6 +12,8 @@ import { postFeedbackEnhanceController } from './controllers/api/feedback/enhanc
 
 const main = async () => {
 	const app = express();
+	app.use(helmet());
+	app.disable('x-powered-by');
 	app.use((req, res, next) => {
 		console.log(`Request: ${req.get('cf-connecting-ip')}, ${req.originalUrl}`);
 		next();
