@@ -1,4 +1,4 @@
-import template from './template.html';
+import {getTemplate} from "../lib/sso-render.js";
 import { search, getFacets } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
@@ -7,11 +7,13 @@ import {parseQuery} from '../lib/parseQuery.js';
 import {trackQuery} from '../lib/mongo.js';
 import {renderHtml} from "../lib/sso-render.js";
 
-export const onRequestGet = async (context) => {
+const indexTemplate = getTemplate(import.meta.dirname, './template.html');
+
+export const indexController = async (req, res) => {
 	const startTime = Date.now();
-	const { request, env } = context;
-	const { searchParams } = new URL(request.url);
-	const { q} = Object.fromEntries(searchParams.entries());
+	const { env } = req;
+	const { searchParams } = new URL(req.originalUrl, 'http://localhost');
+	const { q } = Object.fromEntries(searchParams.entries());
 	const { q: searchQuery, lang } = parseQuery(q);
 	const searchTimeStamp = Date.now();
 	const result = q ? await search(env, searchQuery, lang) : null;
@@ -59,14 +61,14 @@ export const onRequestGet = async (context) => {
 	const hasResults = hasQuery ? results.length > 0 : undefined;
 	// Save used queries for analytics
 	if (q) {
-		trackQuery(context.env, { q, hasResults })
+		trackQuery({ q, hasResults })
 			.catch(error => {
 				console.error('Could not send mongo analytics', error);
 			});
 	}
 
 	// without await it might get killed before sending by cloudflare
-	await emitPageView(context, {
+	await emitPageView(req, {
 		hasResults,
 	});
 
@@ -90,12 +92,8 @@ export const onRequestGet = async (context) => {
 		langs,
 	};
 
-	const html = await renderHtml(template, view)
+	const html = await renderHtml(indexTemplate, view)
 	console.log(`Last milestone took ${Date.now() - startTime}ms`);
 
-	return new Response(html, {
-		headers: {
-			'content-type': 'text/html',
-		},
-	});
+	res.status(200).type('text/html').send(html);
 };

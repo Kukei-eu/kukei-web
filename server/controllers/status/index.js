@@ -1,17 +1,18 @@
-import template from './template.html';
 import { getDefaultViewData } from '../../lib/view.js';
 import {emitPageView} from '../../lib/plausible.js';
 import {getUnchecked, getIndexStats, getCrawlHistory} from '../../lib/mongo.js';
-import {renderHtml} from '../../lib/sso-render.js';
+import {getTemplate, renderHtml} from '../../lib/sso-render.js';
 
-export const onRequestGet = async (context) => {
-	emitPageView(context);
-	const { env } = context;
-	const indexStats = await getIndexStats(env);
-	const unchecked = await getUnchecked(env);
+const template = getTemplate(import.meta.dirname, './template.html');
+
+export const statusController = async (req, res) => {
+	emitPageView(req);
+	const { env } = req;
+	const indexStats = await getIndexStats();
+	const unchecked = await getUnchecked();
 	const uncheckedLang = unchecked === null ? 'unknown' : unchecked;
 	const viewDefaults = await getDefaultViewData(env);
-	const history = await getCrawlHistory(env);
+	const history = await getCrawlHistory();
 
 	const indexMap = new Map();
 	const finalStats = indexStats
@@ -51,9 +52,5 @@ export const onRequestGet = async (context) => {
 	};
 
 	const html = await renderHtml(template, view);
-	return new Response(html, {
-		headers: {
-			'content-type': 'text/html',
-		},
-	});
+	res.status(200).send(html);
 };

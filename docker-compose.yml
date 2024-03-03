@@ -1,0 +1,11 @@
+version: '3'
+services:
+  kukei-web:
+    build: .
+    command: yarn start
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: "host"
+    ports:
+      - "8001:3000"

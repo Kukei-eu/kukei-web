@@ -4,10 +4,10 @@ const anonIp = (ip) => {
 	return anonymizeIp(ip);
 };
 
-const emitEvent = async (context, name, props = {}) => {
-	const { request, env } = context;
-	const userAgent = request.headers.get('user-agent');
-	let ip = request.headers.get('cf-connecting-ip');
+const emitEvent = async (req, name, props = {}) => {
+	const { env } = req;
+	const userAgent = req.get('user-agent');
+	let ip = req.get('cf-connecting-ip');
 
 	if (!ip) {
 		console.warn('No IP address provided. Falling back to local');
@@ -27,7 +27,7 @@ const emitEvent = async (context, name, props = {}) => {
 		method: 'POST',
 		body: JSON.stringify({
 			name,
-			url: request.url,
+			url: req.originalUrl,
 			domain: env.PLAUSIBLE_REPORTED_DOMAIN,
 			props,
 		}),
@@ -41,12 +41,12 @@ const emitEvent = async (context, name, props = {}) => {
  * Emits PageView to Plausible.io
  * Note: this is fully GDPR/Telecom compliant as we anonymize the IP address.
  * Should never throw. Should be fire and forget.
- * @param context
+ * @param req
  * @param {Object} props
  */
-export const emitPageView = async (context, props) => {
+export const emitPageView = async (req, props) => {
 	try {
-		await emitEvent(context, 'pageview', props);
+		await emitEvent(req, 'pageview', props);
 	} catch (error) {
 		console.error('Plausible failed', error);
 	}
