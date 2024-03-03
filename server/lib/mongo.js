@@ -17,7 +17,7 @@ const getDb = async () => {
 		[client, db] = await getMongo();
 	}
 	return db;
-}
+};
 
 export const getIndexStats = async () => {
 	const db = await getDb();
@@ -25,7 +25,7 @@ export const getIndexStats = async () => {
 		url: 1,
 		lastCrawlAt: 1,
 		index: 1
-	})
+	});
 
 
 	return result?.documents ?? [];
@@ -62,21 +62,19 @@ export const getCrawlHistory = async () => {
 
 export const getUnchecked = async () => {
 	const db = await getDb();
-	const result = db.collection(`${envs.MONGO_COLLECTION}links`).aggregate([
-		{
-			$match: {
-				lastCrawledAt: {$exists: false}
+	const [ result ] = await db.collection(`${envs.MONGO_COLLECTION}-links`).aggregate(
+		[
+			{
+				$match: {
+					lastCrawledAt: { $exists: false }
+				}
 			},
-		},
-		{
-			$group: {
-				_id: '$source',
-				count: {$sum: 1}
-			}
-		}
-	]).toArray();
+			{ $count: 'unCrawled' }
+		],
+		{ maxTimeMS: 60000, allowDiskUse: true }
+	).toArray();
 
-	return result?.length ?? 0;
+	return result.unCrawled;
 };
 
 export const trackQuery = async ({q, hasResults}) => {
@@ -97,7 +95,8 @@ export const trackQuery = async ({q, hasResults}) => {
 		{
 			upsert: true,
 		}
-	)
+	);
+
 	console.log(`Analytics via mongo took ${Date.now() - d}ms`);
 };
 
@@ -108,7 +107,7 @@ export const registerFeedbackVote = async ({q, vote, token}) => {
 		vote,
 		token,
 		created: (new Date()).toISOString(),
-	})
+	});
 
 	const { insertedId } = response;
 
@@ -135,7 +134,7 @@ export const enhanceFeedbackVote = async ({token, comment, contact }) => {
 			$set: {
 				comment,
 				contact,
-		},
+			},
 		},
 	);
 	return true;
