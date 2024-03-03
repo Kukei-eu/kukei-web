@@ -1,4 +1,4 @@
-import hash from './version.js';
+import hash from '../version.js';
 import {stats} from './search.js';
 
 export const getDefaultViewData = async (env) => {
