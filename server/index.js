@@ -11,6 +11,9 @@ import { postFeedbackEnhanceController } from './controllers/api/feedback/enhanc
 
 const main = async () => {
 	const app = express();
+	app.use((req, res, next) => {
+		console.log(`Request: ${req.get('cf-connecting-ip')}, ${req.originalUrl}`);
+	});
 	app.use('/', bodyParser.urlencoded({ extended: false }));
 	app.use((req, res, next) => {
 		req.env = process.env;
