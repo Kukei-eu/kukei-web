@@ -1,11 +1,12 @@
-import {getTemplate} from "../lib/sso-render.js";
+import {getTemplate} from '../lib/sso-render.js';
 import { search, getFacets } from '../lib/search.js';
 import classNames from 'html-classnames';
 import {getDefaultViewData} from '../lib/view.js';
 import {emitPageView} from '../lib/plausible.js';
 import {parseQuery} from '../lib/parseQuery.js';
 import {trackQuery} from '../lib/mongo.js';
-import {renderHtml} from "../lib/sso-render.js";
+import {renderHtml} from '../lib/sso-render.js';
+import {isBanned} from '../lib/ban/isBanned.js';
 
 const indexTemplate = getTemplate(import.meta.dirname, './template.html');
 
@@ -15,6 +16,12 @@ export const indexController = async (req, res) => {
 	const { searchParams } = new URL(req.originalUrl, 'http://localhost');
 	const { q } = Object.fromEntries(searchParams.entries());
 	const { q: searchQuery, lang } = parseQuery(q);
+
+	if (isBanned(searchQuery)) {
+		res.status(403).send('Forbidden query. This is a niche search engine. Please do not abuse it.');
+		return;
+	}
+
 	const searchTimeStamp = Date.now();
 	const result = q ? await search(env, searchQuery, lang) : null;
 	const doneIn = Date.now() - searchTimeStamp;
@@ -92,7 +99,7 @@ export const indexController = async (req, res) => {
 		langs,
 	};
 
-	const html = await renderHtml(indexTemplate, view)
+	const html = await renderHtml(indexTemplate, view);
 	console.log(`Last milestone took ${Date.now() - startTime}ms`);
 
 	res.status(200).type('text/html').send(html);
