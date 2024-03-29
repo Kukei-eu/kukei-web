@@ -19,7 +19,7 @@
     "eslint-config-minimal-tabs": "^1.0.0"
   },
   "dependencies": {
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "helmet": "^7.1.0",
     "html-classnames": "^1.0.0",
     "ip-anonymize": "^0.1.0",
