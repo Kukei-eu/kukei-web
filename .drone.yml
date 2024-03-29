@@ -4,7 +4,7 @@ name: default
 
 steps:
   - name: test
-    image: 21:alpine
+    image: 21-alpine
     commands:
       - yarn install
       - yarn test
