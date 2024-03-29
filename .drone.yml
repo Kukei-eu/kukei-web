@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: 21:alpine
+    commands:
+      - yarn install
+      - yarn test
