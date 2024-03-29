@@ -1,3 +1,5 @@
+[![Build Status](https://drone.nowicki.dev/api/badges/Kukei-eu/kukei-web/status.svg)](https://drone.nowicki.dev/Kukei-eu/kukei-web)
+
 # Kukei.eu website
 
 ## What is it
