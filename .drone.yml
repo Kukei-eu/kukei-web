@@ -17,6 +17,9 @@ depends_on:
   - ci
 steps:
   - name: build
+    when:
+      branch:
+        - main
     environment:
       KUKEI_WEB_PWD:
         from_secret: KUKEI_WEB_PWD
