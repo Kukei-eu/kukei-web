@@ -21,4 +21,5 @@ steps:
       KUKEI_WEB_PWD:
         from_secret: KUKEI_WEB_PWD
     commands:
-      - ./$KUKEI_WEB_PWD/deploy.sh
+      - cd $KUKEI_WEB_PWD
+      - ./deploy.sh
