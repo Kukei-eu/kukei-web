@@ -22,4 +22,7 @@ steps:
         from_secret: KUKEI_WEB_PWD
     commands:
       - cd $KUKEI_WEB_PWD
-      - ./deploy.sh
+      - git pull
+      - docker compose build
+      - docker compose down
+      - docker compose up -d
