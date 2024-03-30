@@ -29,6 +29,6 @@ steps:
       - ./deploy.sh
 ---
 kind: signature
-hmac: 4f906aa359acefa2673aebb669160cff66018adb46cc623f1bea237bc69c5d6b
+hmac: 4f5b887283b42a5c4a4f9fff11768567fad687aed566458721021a03c1cdf153
 
 ...
