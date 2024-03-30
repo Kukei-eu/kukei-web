@@ -22,13 +22,13 @@ steps:
       branch:
         - main
     environment:
-      KUKEI_WEB_PWD:
-        from_secret: KUKEI_WEB_PWD
+      CI_DEPLOY_PWD:
+        from_secret: CI_DEPLOY_PWD
     commands:
-      - cd $KUKEI_WEB_PWD
+      - cd $CI_DEPLOY_PWD
       - ./deploy.sh
 ---
 kind: signature
-hmac: 30d66435b76e016ab0d3bc8524f32c597347fa01277614871bbec834d9f03c05
+hmac: 4f906aa359acefa2673aebb669160cff66018adb46cc623f1bea237bc69c5d6b
 
 ...
