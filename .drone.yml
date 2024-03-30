@@ -1,3 +1,4 @@
+---
 kind: pipeline
 type: docker
 name: ci
@@ -26,3 +27,8 @@ steps:
     commands:
       - cd $KUKEI_WEB_PWD
       - ./deploy.sh
+---
+kind: signature
+hmac: 30d66435b76e016ab0d3bc8524f32c597347fa01277614871bbec834d9f03c05
+
+...
