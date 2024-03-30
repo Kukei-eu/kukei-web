@@ -23,6 +23,7 @@ steps:
     commands:
       - cd $PWD
       - ls $PWD
+      - pwd
       - git pull
       - docker compose build
       - docker compose down && docker compose up -d
