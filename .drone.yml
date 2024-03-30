@@ -18,7 +18,7 @@ depends_on:
 steps:
   - name: build
     environment:
-      PWD:
+      KUKEI_WEB_PWD:
         from_secret: KUKEI_WEB_PWD
     commands:
-      - ./$PWD/deploy.sh
+      - ./$KUKEI_WEB_PWD/deploy.sh
