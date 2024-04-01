@@ -4,7 +4,7 @@ const anonIp = (ip) => {
 	return anonymizeIp(ip);
 };
 
-const emitEvent = async (req, name, props = {}) => {
+const emitEvent = async (req, name, props = {}, fakeUrl) => {
 	const { env } = req;
 	const userAgent = req.get('user-agent');
 	let ip = req.get('cf-connecting-ip');
@@ -27,7 +27,7 @@ const emitEvent = async (req, name, props = {}) => {
 		method: 'POST',
 		body: JSON.stringify({
 			name,
-			url: req.originalUrl,
+			url: fakeUrl ? fakeUrl : req.originalUrl,
 			domain: env.PLAUSIBLE_REPORTED_DOMAIN,
 			props,
 		}),
@@ -43,10 +43,11 @@ const emitEvent = async (req, name, props = {}) => {
  * Should never throw. Should be fire and forget.
  * @param req
  * @param {Object} props
+ * @param {string|null} fakeUrl
  */
-export const emitPageView = async (req, props) => {
+export const emitPageView = async (req, props, fakeUrl = null) => {
 	try {
-		await emitEvent(req, 'pageview', props);
+		await emitEvent(req, 'pageview', props, fakeUrl);
 	} catch (error) {
 		console.error('Plausible failed', error);
 	}

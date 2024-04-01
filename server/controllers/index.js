@@ -18,6 +18,8 @@ export const indexController = async (req, res) => {
 	const { q: searchQuery, lang } = parseQuery(q);
 
 	if (isBanned(searchQuery)) {
+		// without await it might get killed before sending by cloudflare
+		emitPageView(req, {}, '/forbidden');
 		res.status(403).send('Forbidden query. This is a niche search engine. Please do not abuse it.');
 		return;
 	}
@@ -75,9 +77,9 @@ export const indexController = async (req, res) => {
 	}
 
 	// without await it might get killed before sending by cloudflare
-	await emitPageView(req, {
+	emitPageView(req, {
 		hasResults,
-	});
+	}, hasQuery ? '/result' : '/');
 
 	const facets = await getFacets(env);
 
