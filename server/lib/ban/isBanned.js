@@ -2,6 +2,10 @@ import shortener from './shortener.js';
 import phrases from './phrases.js';
 
 export const isBanned = (query) => {
+	if (!query) {
+		return false;
+	}
+
 	// Check for shorteners
 	if (shortener.includes(query)) {
 		return true;
