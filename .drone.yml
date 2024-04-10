@@ -2,7 +2,9 @@
 kind: pipeline
 type: docker
 name: ci
-
+trigger:
+  event:
+    - push
 steps:
   - name: test
     image: node:21-alpine
