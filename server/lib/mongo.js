@@ -31,14 +31,15 @@ export const getIndexStats = async () => {
 	return result?.documents ?? [];
 };
 
+// One day more than two weeks ago
+const twoWeeksAgoInMs = Date.now() - (15 * 24 * 60 * 60 * 1000);
 export const getCrawlHistory = async () => {
-	const twoDaysAgoInMs = Date.now() - (2 * 24 * 60 * 60 * 1000);
 	const db = await getDb();
 
 	const result = await db.collection(`${envs.MONGO_COLLECTION}-stats`).aggregate([
 		{
 			$match: {
-				created: {$gt: twoDaysAgoInMs}
+				created: {$gt: twoWeeksAgoInMs}
 			}
 		},
 		{
