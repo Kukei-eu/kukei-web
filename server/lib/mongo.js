@@ -21,14 +21,9 @@ const getDb = async () => {
 
 export const getIndexStats = async () => {
 	const db = await getDb();
-	const result = await db.collection(envs.MONGO_COLLECTION).find({
-		url: 1,
-		lastCrawlAt: 1,
-		index: 1
-	});
+	const result = await db.collection(envs.MONGO_COLLECTION).find();
 
-
-	return result?.documents ?? [];
+	return result.toArray();
 };
 
 // One day more than two weeks ago
