@@ -6,9 +6,9 @@
 	<p>Total pages indexed: <format-number>{{ totalPages }}</format-number></p>
 	<p>Per index:</p>
 	<ul class="list">
-		<li><format-number>{{blogPages}}</format-number> blogs pages</li>
-		<li><format-number>{{docsPages}}</format-number> docs pages</li>
-		<li><format-number>{{magazinesPages}}</format-number> magazines pages</li>
+		<li><format-number>{{blogPages}}</format-number> blogs pages from <format-number>{{ hostsStats.blogs }}</format-number> blogs</li>
+		<li><format-number>{{docsPages}}</format-number> docs pages from <format-number>{{ hostsStats.docs }}</format-number> docs</li>
+		<li><format-number>{{magazinesPages}}</format-number> magazines pages from <format-number>{{ hostsStats.magazines }}</format-number> magazines</li>
 	</ul>
 	<p>Pages known but yet to be crawled: <format-number>{{ uncheckedLang }}</format-number></p>
 	<h2>Last two weeks</h2>

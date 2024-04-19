@@ -43,6 +43,16 @@ export const statusController = async (req, res) => {
 			return indexElement;
 		});
 
+	const hostsStats = {
+		magazines: 0,
+		blogs: 0,
+		docs: 0,
+	}
+	for (const indexGroup of finalStats) {
+		hostsStats[indexGroup.index] = indexGroup.elements.length;
+	}
+
+
 	const view = {
 		...viewDefaults,
 		mainClass: 'stats body',
@@ -51,6 +61,7 @@ export const statusController = async (req, res) => {
 		historyJSON: JSON.stringify(history),
 		finalStats,
 		uncheckedLang,
+		hostsStats,
 	};
 
 	const html = await renderHtml(template, view);
