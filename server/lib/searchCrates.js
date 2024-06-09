@@ -17,7 +17,7 @@ const crateToSearchItem = (curr) => ({
 	excerpt: curr.description.length > 122 ? curr.description.slice(0, 122) + '...' : curr.description,
 	lang: 'en',
 	hostname: 'crates.io',
-	url: curr.documentation || curr.repository,
+	url: `https://crates.io/crates/${curr.id}`,
 });
 
 /**
