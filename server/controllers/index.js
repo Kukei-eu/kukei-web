@@ -7,9 +7,20 @@ import {parseQuery} from '../lib/parseQuery.js';
 import {trackQuery} from '../lib/mongo.js';
 import {renderHtml} from '../lib/sso-render.js';
 import {isBanned} from '../lib/ban/isBanned.js';
+import {searchRegistries} from '../lib/searchRegistries.js';
 
 const indexTemplate = getTemplate(import.meta.dirname, './template.html');
 
+const doSearch = async (env, searchQuery, lang) => {
+	if (!searchQuery) {
+		return null;
+	}
+
+	const resultsBase = await search(env, searchQuery, lang);
+	await searchRegistries(env, resultsBase, searchQuery);
+
+	return resultsBase;
+};
 export const indexController = async (req, res) => {
 	const startTime = Date.now();
 	const { env } = req;
@@ -25,7 +36,7 @@ export const indexController = async (req, res) => {
 	}
 
 	const searchTimeStamp = Date.now();
-	const result = q ? await search(env, searchQuery, lang) : null;
+	const searchResult = q ?  await doSearch(env, searchQuery, lang) : null;
 	const doneIn = Date.now() - searchTimeStamp;
 	console.log(`Result milestone took ${Date.now() - startTime}ms`);
 
@@ -33,30 +44,41 @@ export const indexController = async (req, res) => {
 	const viewDefaults = await getDefaultViewData(env);
 	console.log(`Default view milestone took ${Date.now() - startTime}ms`);
 
-	const hasBlogs = result?.hits.blogs.length > 0;
-	const hasDocs = result?.hits.docs.length > 0;
-	const hasMagazines = result?.hits.magazines.length > 0;
+	const hasBlogs = searchResult?.hits.blogs.length > 0;
+	const hasDocs = searchResult?.hits.docs.length > 0;
+	const hasMagazines = searchResult?.hits.magazines.length > 0;
+	const hasRegistries = searchResult?.hits.registries.length > 0;
+
 	const results = [];
+
+	if (hasRegistries) {
+		results.push({
+			name: 'Registries',
+			anchor: 'registries',
+			hits: searchResult.hits.registries,
+		});
+	}
 
 	if (hasDocs) {
 		results.push({
 			name: 'Docs',
 			anchor: 'docs',
-			hits: result.hits.docs,
+			hits: searchResult.hits.docs,
 		});
 	}
 	if (hasBlogs) {
 		results.push({
 			name: 'Blogs',
 			anchor: 'blogs',
-			hits: result.hits.blogs,
+			hits: searchResult.hits.blogs,
 		});
 	}
+
 	if (hasMagazines) {
 		results.push({
 			name: 'Magazines',
 			anchor: 'magazines',
-			hits: result.hits.magazines,
+			hits: searchResult.hits.magazines,
 		});
 	}
 
