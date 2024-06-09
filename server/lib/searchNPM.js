@@ -1,4 +1,5 @@
 import {MemCache} from './MemCache.js';
+import {KUKEI_WEB_SEARCH_CLIENT_UA} from './__tests__/constants.js';
 
 /**
  * @typedef {import('../types').ResultGrouped} ResultGrouped
@@ -29,7 +30,11 @@ const fetchResults = async (q) => {
 		const url = new URL('/-/v1/search', 'https://registry.npmjs.org');
 		url.searchParams.set('text', q);
 		url.searchParams.set('size', '5');
-		const response = await fetch(url.toString());
+		const response = await fetch(url.toString(), {
+			headers: {
+				'User-Agent': KUKEI_WEB_SEARCH_CLIENT_UA,
+			}
+		});
 		if (response.status !== 200) {
 			throw new Error(`Failed to fetch, ${response.status}, ${url}`);
 		}
@@ -45,8 +50,9 @@ const fetchResults = async (q) => {
 					...npmResultToSearchItem(curr),
 					subItems: [],
 				};
+			} else {
+				acc.subItems.push(npmResultToSearchItem(curr));
 			}
-			acc.subItems.push(npmResultToSearchItem(curr));
 
 			return acc;
 		}, {});
