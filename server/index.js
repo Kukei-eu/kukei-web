@@ -12,7 +12,12 @@ import { postFeedbackEnhanceController } from './controllers/api/feedback/enhanc
 
 const main = async () => {
 	const app = express();
-	app.use(helmet());
+	app.use(helmet({
+		strictTransportSecurity: {
+			maxAge: 63072000,
+			preload: true,
+		},
+	}));
 	app.disable('x-powered-by');
 	app.use((req, res, next) => {
 		console.log(`Request: ${req.get('cf-connecting-ip')}, ${req.originalUrl}`);
