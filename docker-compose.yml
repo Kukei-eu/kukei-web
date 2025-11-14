@@ -7,3 +7,16 @@ services:
     env_file:
       - .env
     network_mode: "host"
+  meili161:
+    image: getmeili/meilisearch:v1.7.5
+    container_name: "meili"
+    ulimits:
+      nofile:
+        soft: 400000
+        hard: 500000
+    volumes:
+      - ./meili_data:/meili_data
+    network_mode: "host"
+    restart: unless-stopped
+    env_file:
+      - .env
