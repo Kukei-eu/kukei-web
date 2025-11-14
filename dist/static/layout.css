@@ -163,7 +163,7 @@ body.body--has-query {
 			grid-area: results;
 
 			& > section {
-				margin-top: 2rem;
+				margin-top: 3rem;
 				box-shadow: 4rem -2px 0 1px var(--color-background), 0 -2px 0 0;
 
 				& li  a {

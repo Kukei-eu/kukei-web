@@ -20,19 +20,10 @@ const makeOptions = (lang) => ({
 });
 
 /**
- * @typedef {Object} ResultItem
- * @property {string} url
- * @property {string} highlight
- * @property {string} index
- * @property {string} excerpt
- * @property {string} title
- * @property {string} lang
- * @property {string} hostname
+ * @typedef {import('../types').ResultItem} ResultItem
  */
 /**
- * @typedef {Object} ResultGrouped
- * @extends {ResultItem}
- * @property {ResultItem[]} subItems
+ * @typedef {import('../types').ResultGrouped} ResultGrouped
  */
 
 /**
@@ -41,7 +32,7 @@ const makeOptions = (lang) => ({
  * @param env
  * @param index
  * @param q
- * @param {Object} options
+ * @param {string} lang
  * @returns {Promise<void>}
  */
 const doSearch = async (results, env, index, q, lang) => {
