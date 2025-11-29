@@ -1,6 +1,5 @@
-[![Build Status](https://drone.nowicki.dev/api/badges/Kukei-eu/kukei-web/status.svg)](https://drone.nowicki.dev/Kukei-eu/kukei-web)
-
 # Kukei.eu website
+Code moved to [Codeberg](https://codeberg.org/kukei/kukei-eu)
 
 ## What is it
 Thsi is a repo of a [kukei.eu](https://kukei.eu) website.
